@@ -15,7 +15,7 @@ export function ShopInfoSection({ items }: ShopInfoSectionProps) {
         <SectionHeading
           kicker="FAQ"
           title="Compra, envio e encomendas"
-          text="Tudo que a pessoa precisa para comprar com segurança e entender o funcionamento da loja autoral."
+          text="Tudo que a pessoa precisa para comprar com segurança e entender o funcionamento da loja."
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1`}>

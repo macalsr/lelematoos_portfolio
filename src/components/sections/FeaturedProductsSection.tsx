@@ -43,7 +43,7 @@ export function FeaturedProductsSection({ products, categories, whatsappPhone }:
         <SectionHeading
           kicker="Produtos em destaque"
           title="Peças autorais da marca"
-          text="A linguagem old school da Lele Matoos vira produto em bandeiras, prints e ecobags com identidade própria."
+          text=""
         />
 
         <div className="mt-6 flex flex-wrap gap-2 max-md:mt-5">

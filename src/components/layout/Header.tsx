@@ -22,8 +22,8 @@ type HeaderProps = {
 export function Header({ content }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const navItems = content.nav.length > 0 ? content.nav : mockSiteContent.nav;
-  const brandName = content.brand.name || mockSiteContent.brand.name;
-  const brandTagline = content.brand.tagline || mockSiteContent.brand.tagline;
+  const brandName = content.brand.name;
+  const brandTagline = content.brand.tagline;
   const mobileMenuLinks = navItems.filter((item) => !item.cta);
   const ctaItem = navItems.find((item) => item.cta);
 

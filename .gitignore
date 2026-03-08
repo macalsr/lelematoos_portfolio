@@ -86,3 +86,4 @@ studio-lele-matos-site/.sanity/
 /public/uploads
 /public/tmp
 AGENTS.md
+.env.example

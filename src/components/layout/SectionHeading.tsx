@@ -16,9 +16,11 @@ export function SectionHeading({ kicker, title, text, children }: SectionHeading
       <h2 className="font-heading mb-[14px] text-[clamp(34px,5vw,58px)] font-black uppercase leading-[0.92] text-green-dark">
         {title}
       </h2>
-      <p className="font-body m-0 max-w-[760px] text-lg leading-[1.75] text-muted max-md:text-[15px] max-md:leading-[1.65]">
-        {text}
-      </p>
+      {text.trim() ? (
+        <p className="font-body m-0 max-w-[760px] text-lg leading-[1.75] text-muted max-md:text-[15px] max-md:leading-[1.65]">
+          {text}
+        </p>
+      ) : null}
       {children}
     </>
   );
