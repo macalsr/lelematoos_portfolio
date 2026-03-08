@@ -11,6 +11,7 @@ type SanitySiteSettingsSeo = {
   seoDescription?: string;
   ogImageUrl?: string;
   ogImageAlt?: string;
+  headerLogoUrl?: string;
 };
 
 export type SiteSeo = {
@@ -18,6 +19,7 @@ export type SiteSeo = {
   description: string;
   ogImageUrl?: string;
   ogImageAlt?: string;
+  faviconUrl?: string;
 };
 
 function getSeoFallback(): SiteSeo {
@@ -49,6 +51,7 @@ export async function getSiteSeo(): Promise<SiteSeo> {
       description,
       ogImageUrl: settings.ogImageUrl,
       ogImageAlt: settings.ogImageAlt,
+      faviconUrl: settings.headerLogoUrl || settings.ogImageUrl,
     };
   } catch {
     return fallback;

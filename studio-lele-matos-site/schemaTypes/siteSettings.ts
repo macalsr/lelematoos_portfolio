@@ -7,7 +7,7 @@ export const siteSettingsType = defineType({
   fieldsets: [
     { name: "seo", title: "SEO" },
     { name: "brand", title: "Marca e topo" },
-    { name: "contact", title: "Contato" },
+    { name: "contact", title: "Contato e atendimento" },
   ],
   fields: [
     defineField({
@@ -65,6 +65,17 @@ export const siteSettingsType = defineType({
       ],
     }),
     defineField({
+      name: "ogImageSvg",
+      title: "Imagem de compartilhamento (SVG opcional)",
+      type: "file",
+      fieldset: "seo",
+      description:
+        "Use este campo se quiser enviar a versão em SVG. Se preenchido, terá prioridade sobre a imagem comum.",
+      options: {
+        accept: ".svg,image/svg+xml",
+      },
+    }),
+    defineField({
       name: "headerTitle",
       title: "Título principal do header (texto)",
       type: "string",
@@ -88,6 +99,17 @@ export const siteSettingsType = defineType({
           description: "Descrição da logo para acessibilidade.",
         }),
       ],
+    }),
+    defineField({
+      name: "headerLogoSvg",
+      title: "Logo do header (SVG opcional)",
+      type: "file",
+      fieldset: "brand",
+      description:
+        "Se enviar um SVG aqui, ele será usado no header com prioridade sobre a imagem comum.",
+      options: {
+        accept: ".svg,image/svg+xml",
+      },
     }),
     defineField({
       name: "heroTitle",
@@ -128,6 +150,32 @@ export const siteSettingsType = defineType({
       ],
     }),
     defineField({
+      name: "heroImageSvg",
+      title: "Imagem do hero (SVG opcional)",
+      type: "file",
+      fieldset: "brand",
+      description:
+        "Use este campo para subir um SVG no hero. Se preenchido, ele terá prioridade sobre a imagem comum.",
+      options: {
+        accept: ".svg,image/svg+xml",
+      },
+    }),
+    defineField({
+      name: "heroImageSize",
+      title: "Tamanho da imagem do hero",
+      type: "string",
+      fieldset: "brand",
+      description: "Define o tamanho da imagem no topo da página inicial.",
+      options: {
+        list: [
+          { title: "Pequena", value: "small" },
+          { title: "Média", value: "medium" },
+          { title: "Grande", value: "large" },
+        ],
+      },
+      initialValue: "medium",
+    }),
+    defineField({
       name: "brandTagline",
       title: "Tagline da marca",
       type: "string",
@@ -159,10 +207,10 @@ export const siteSettingsType = defineType({
       description: "Escolha uma paleta pronta para mudar o visual sem quebrar o design.",
       options: {
         list: [
-          { title: "Clássico Rosé", value: "classic-rose" },
-          { title: "Oliva Vintage", value: "olive-vintage" },
-          { title: "Escuro Old School", value: "dark-oldschool" },
-          { title: "Creme Rosado", value: "cream-pink" },
+          { title: "Rosa e verde clássico", value: "classic-rose" },
+          { title: "Doce retrô colorido", value: "olive-vintage" },
+          { title: "Vinho e rosa vibrante", value: "dark-oldschool" },
+          { title: "Místico vibrante", value: "cream-pink" },
         ],
       },
       initialValue: "classic-rose",
@@ -170,77 +218,29 @@ export const siteSettingsType = defineType({
     }),
     defineField({
       name: "whatsapp",
-      title: "WhatsApp",
+      title: "WhatsApp de contato",
       type: "string",
       fieldset: "contact",
-      description: "Número com DDI/DDD. Exemplo: 5561999999999",
-      validation: (rule) => rule.required(),
+      description:
+        "Este número ou link será usado nos botões de WhatsApp do site. Exemplo: 5561999999999 ou https://wa.me/5561999999999",
+      validation: (rule) =>
+        rule.required().custom((value) => {
+          const input = String(value ?? "").trim();
+          if (!input) return "Preencha o WhatsApp de contato.";
+          const hasPhoneDigits = input.replace(/\D/g, "").length >= 10;
+          const hasWhatsappLink = /wa\.me|api\.whatsapp\.com/i.test(input);
+          return hasPhoneDigits || hasWhatsappLink
+            ? true
+            : "Informe um número válido com DDI/DDD ou um link de WhatsApp.";
+        }),
     }),
     defineField({
       name: "instagram",
-      title: "Instagram",
+      title: "Instagram da marca",
       type: "url",
       fieldset: "contact",
-      description: "Link completo do Instagram da marca.",
+      description: "Link completo do Instagram usado nos botões do site.",
       validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
-    }),
-    defineField({
-      name: "location",
-      title: "Local de atendimento",
-      type: "string",
-      fieldset: "contact",
-      description: "Texto exibido no bloco principal de contato.",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "contactDescription",
-      title: "Descrição de contato",
-      type: "text",
-      rows: 4,
-      fieldset: "contact",
-      description: "Texto de apoio na seção de contato.",
-    }),
-    defineField({
-      name: "contactActions",
-      title: "Ações de contato",
-      type: "array",
-      fieldset: "contact",
-      description: "Botões e mensagens exibidos no bloco de contato.",
-      of: [
-        defineField({
-          name: "action",
-          title: "Ação",
-          type: "object",
-          fields: [
-            defineField({
-              name: "label",
-              title: "Texto do botão/linha",
-              type: "string",
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: "href",
-              title: "Link (opcional)",
-              type: "string",
-              description: "Se vazio, vira uma linha apenas informativa.",
-            }),
-            defineField({
-              name: "messageOnly",
-              title: "Somente mensagem",
-              type: "boolean",
-              description: "Marque quando não houver link clicável.",
-              initialValue: false,
-            }),
-          ],
-        }),
-      ],
-    }),
-    defineField({
-      name: "contactMainCtaText",
-      title: "Texto do botão principal",
-      type: "string",
-      fieldset: "contact",
-      description: "Texto do botão principal da seção de contato.",
     }),
     defineField({
       name: "contactFloatingText",

@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <div className="grid grid-cols-[1fr_1fr] gap-6 max-lg:grid-cols-1">
               <Card variant="flash">
-                <div className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,#f6d5df,#f8e6ec_42%,#dcebcf)] p-[22px]">
+                <div className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px]">
                   <img
                     src={product.imagemPrincipal}
                     alt={product.nome}

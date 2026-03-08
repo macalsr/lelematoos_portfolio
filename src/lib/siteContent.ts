@@ -18,19 +18,12 @@ type SanitySiteSettings = {
   heroTitle?: string;
   heroSubtitle?: string;
   heroNote?: string;
+  heroImageSize?: string;
   heroImageUrl?: string;
   heroImageAlt?: string;
   brandTagline?: string;
   fontVariant?: string;
   themeVariant?: string;
-  location?: string;
-  contactDescription?: string;
-  contactActions?: Array<{
-    label?: string;
-    href?: string;
-    messageOnly?: boolean;
-  }>;
-  contactMainCtaText?: string;
   contactFloatingText?: string;
   contactFloatingInstagramText?: string;
 };
@@ -43,7 +36,6 @@ function cloneSiteContent(base: SiteContent): SiteContent {
     nav: [...base.nav],
     contact: {
       ...base.contact,
-      actions: base.contact.actions.map((action) => ({ ...action })),
     },
   };
 }
@@ -52,26 +44,38 @@ function createEmptySiteContent(): SiteContent {
   return {
     seo: { title: "", description: "" },
     brand: { name: "", tagline: "", logoImageUrl: undefined, logoImageAlt: undefined },
-    hero: { title: "", subtitle: "", note: "", imageUrl: undefined, imageAlt: undefined },
+    hero: { title: "", subtitle: "", note: "", imageSize: "medium", imageUrl: undefined, imageAlt: undefined },
     fontVariant: mockSiteContent.fontVariant,
     themeVariant: mockSiteContent.themeVariant,
     nav: [...mockSiteContent.nav],
     contact: {
       whatsappPhone: "",
       instagramUrl: "",
-      cityTitle: "",
-      description: "",
-      actions: [],
-      mainCtaText: "",
       floatingText: "",
       floatingInstagramText: "",
     },
   };
 }
 
+function getSafeHeroImageSize(value?: string): SiteContent["hero"]["imageSize"] {
+  if (value === "small" || value === "medium" || value === "large") return value;
+  return "medium";
+}
+
 function normalizeWhatsappPhone(value?: string) {
-  if (!value) return "";
-  return value.replace(/\D/g, "");
+  const input = value?.trim();
+  if (!input) return "";
+
+  // Accept full WhatsApp links or raw numbers.
+  const waMeMatch = input.match(/wa\.me\/(\d{10,15})/i);
+  if (waMeMatch?.[1]) return waMeMatch[1];
+
+  const apiMatch = input.match(/[?&]phone=(\d{10,15})/i);
+  if (apiMatch?.[1]) return apiMatch[1];
+
+  const digits = input.replace(/\D/g, "");
+  if (digits.length >= 10) return digits;
+  return "";
 }
 
 export async function getSiteContent() {
@@ -98,43 +102,16 @@ export async function getSiteContent() {
     if (settings.heroTitle?.trim()) content.hero.title = settings.heroTitle.trim();
     if (settings.heroSubtitle?.trim()) content.hero.subtitle = settings.heroSubtitle.trim();
     if (settings.heroNote?.trim()) content.hero.note = settings.heroNote.trim();
+    content.hero.imageSize = getSafeHeroImageSize(settings.heroImageSize);
     if (settings.heroImageUrl?.trim()) content.hero.imageUrl = settings.heroImageUrl.trim();
     if (settings.heroImageAlt?.trim()) content.hero.imageAlt = settings.heroImageAlt.trim();
     if (settings.brandTagline?.trim()) content.brand.tagline = settings.brandTagline.trim();
     content.fontVariant = getSafeFontVariant(settings.fontVariant);
     content.themeVariant = getSafeThemeVariant(settings.themeVariant);
-    if (settings.location?.trim()) content.contact.cityTitle = settings.location.trim();
-    if (settings.contactDescription?.trim()) content.contact.description = settings.contactDescription.trim();
-    if (settings.contactMainCtaText?.trim()) content.contact.mainCtaText = settings.contactMainCtaText.trim();
     if (settings.contactFloatingText?.trim()) content.contact.floatingText = settings.contactFloatingText.trim();
     if (settings.contactFloatingInstagramText?.trim()) {
       content.contact.floatingInstagramText = settings.contactFloatingInstagramText.trim();
     }
-
-    if (settings.contactActions?.length) {
-      content.contact.actions = settings.contactActions
-        .filter((item) => item.label?.trim())
-        .map((item) => ({
-          label: item.label!.trim(),
-          href: item.href?.trim(),
-          messageOnly: Boolean(item.messageOnly),
-        }));
-    }
-
-    content.contact.actions = content.contact.actions.map((action) => {
-      if (action.label.toLowerCase().includes("instagram") && content.contact.instagramUrl) {
-        return { ...action, href: content.contact.instagramUrl };
-      }
-
-      if (action.label.toLowerCase().includes("whatsapp") && content.contact.whatsappPhone) {
-        return {
-          ...action,
-          href: `https://wa.me/${content.contact.whatsappPhone}`,
-        };
-      }
-
-      return action;
-    });
 
     return content;
   } catch {
