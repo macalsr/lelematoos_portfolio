@@ -34,11 +34,24 @@ export const categoryType = defineType({
       description: "Menor número aparece primeiro.",
       initialValue: 0,
     }),
+    defineField({
+      name: "archived",
+      title: "Arquivar esta categoria",
+      type: "boolean",
+      description:
+        "Marque para ocultar esta categoria do site sem excluir o cadastro.",
+      initialValue: false,
+    }),
   ],
   preview: {
     select: {
       title: "name",
       subtitle: "description",
+      archived: "archived",
     },
+    prepare: ({ title, subtitle, archived }) => ({
+      title,
+      subtitle: archived ? `Arquivada · ${subtitle}` : subtitle,
+    }),
   },
 });

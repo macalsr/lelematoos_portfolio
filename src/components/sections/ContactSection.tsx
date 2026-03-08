@@ -23,7 +23,7 @@ export function ContactSection({ content }: ContactSectionProps) {
             text="Fale direto com a marca para comprar produtos, acompanhar lançamentos e tirar dúvidas sobre envio."
           />
 
-          <div className={`${sectionStyles.contentGridTop} grid grid-cols-[1.1fr_0.9fr] items-center gap-6 rounded-[30px] border-[4px] border-green-dark bg-pink-soft p-[34px] shadow-[8px_8px_0_#193f31] max-lg:grid-cols-1 max-md:gap-5 max-md:p-5`}>
+          <div className={`${sectionStyles.contentGridTop} grid grid-cols-[1.1fr_0.9fr] items-center gap-6 rounded-[30px] border border-green-dark/15 bg-pink-soft p-[34px] max-lg:grid-cols-1 max-md:gap-5 max-md:p-5`}>
             <div>
               <h3 className="mb-3 text-[clamp(28px,4vw,42px)] font-black uppercase leading-none text-green-dark max-md:leading-[1.05]">
                 {content.contact.cityTitle}
@@ -48,7 +48,7 @@ export function ContactSection({ content }: ContactSectionProps) {
                 ) : (
                   <div
                     key={action.label}
-                    className="rounded-[20px] border-[4px] border-green-dark bg-surface p-[18px] text-[13px] font-black uppercase tracking-[0.12em] text-green-dark shadow-green-mid"
+                    className="rounded-[20px] border border-green-dark/20 bg-surface p-[18px] text-[13px] font-black uppercase tracking-[0.12em] text-green-dark"
                   >
                     {action.label}
                   </div>

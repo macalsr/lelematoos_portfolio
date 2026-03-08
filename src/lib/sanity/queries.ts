@@ -1,6 +1,6 @@
 import groq from "groq";
 
-export const productsQuery = groq`*[_type == "product"] | order(_createdAt desc){
+export const productsQuery = groq`*[_type == "product" && archived != true] | order(_createdAt desc){
   _id,
   name,
   "slug": slug.current,
@@ -22,7 +22,7 @@ export const productsQuery = groq`*[_type == "product"] | order(_createdAt desc)
   "mainImageUrl": mainImage.asset->url
 }`;
 
-export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]{
+export const productBySlugQuery = groq`*[_type == "product" && archived != true && slug.current == $slug][0]{
   _id,
   name,
   "slug": slug.current,
@@ -44,11 +44,11 @@ export const productBySlugQuery = groq`*[_type == "product" && slug.current == $
   "mainImageUrl": mainImage.asset->url
 }`;
 
-export const productSlugsQuery = groq`*[_type == "product" && defined(slug.current)]{
+export const productSlugsQuery = groq`*[_type == "product" && archived != true && defined(slug.current)]{
   "slug": slug.current
 }`;
 
-export const categoriesQuery = groq`*[_type == "category"] | order(order asc, name asc){
+export const categoriesQuery = groq`*[_type == "category" && archived != true] | order(order asc, name asc){
   _id,
   name,
   "slug": slug.current,
@@ -68,20 +68,11 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   heroTitle,
   heroSubtitle,
   heroNote,
+  "heroImageUrl": heroImage.asset->url,
+  "heroImageAlt": coalesce(heroImage.alt, heroTitle, "Imagem do hero"),
   brandTagline,
-  navItems[]{
-    id,
-    label,
-    href,
-    cta
-  },
-  aboutText,
-  aboutCards[]{
-    title,
-    description,
-    tone
-  },
-  aboutPills,
+  fontVariant,
+  themeVariant,
   location,
   contactDescription,
   contactActions[]{
@@ -93,7 +84,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   contactFloatingText
 }`;
 
-export const faqItemsQuery = groq`*[_type == "faqItem"] | order(_createdAt asc){
+export const faqItemsQuery = groq`*[_type == "faqItem" && archived != true] | order(_createdAt asc){
   _id,
   question,
   answer

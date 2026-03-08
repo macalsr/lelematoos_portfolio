@@ -21,7 +21,7 @@ export function GallerySection({ items }: GallerySectionProps) {
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4`}>
           {items.map((item) => (
             <Card key={item.id} variant="portfolio">
-              <div className="flex aspect-[1/1.1] items-center justify-center border-b-[4px] border-b-green-dark bg-[linear-gradient(135deg,#f3d4df,#dcebcf)] p-[18px]">
+              <div className="flex aspect-[1/1.1] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,#f3d4df,#dcebcf)] p-[18px]">
                 <img
                   src={item.imageUrl}
                   alt={item.alt}

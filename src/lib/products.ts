@@ -81,6 +81,10 @@ function mapSanityProductToFrontend(product: SanityProduct): ProductItem | null 
 }
 
 export async function getProducts() {
+  if (shouldUseLocalFallback()) {
+    return mockProducts;
+  }
+
   try {
     const sanityProducts = await fetchSanityProducts();
     const mapped = (sanityProducts as SanityProduct[])
@@ -88,9 +92,9 @@ export async function getProducts() {
       .filter((item): item is ProductItem => item !== null);
 
     if (mapped.length > 0) return mapped;
-    return shouldUseLocalFallback() ? mockProducts : [];
+    return [];
   } catch {
-    return shouldUseLocalFallback() ? mockProducts : [];
+    return [];
   }
 }
 
@@ -100,26 +104,32 @@ export async function getFeaturedProducts() {
 }
 
 export async function getProductBySlug(slug: string) {
+  if (shouldUseLocalFallback()) {
+    return mockProducts.find((product) => product.slug === slug);
+  }
+
   try {
     const sanityProduct = (await fetchSanityProductBySlug(slug)) as SanityProduct | null;
     const mapped = sanityProduct ? mapSanityProductToFrontend(sanityProduct) : null;
     if (mapped) return mapped;
   } catch {
-    if (shouldUseLocalFallback()) {
-      return mockProducts.find((product) => product.slug === slug);
-    }
+    return undefined;
   }
 
-  return shouldUseLocalFallback() ? mockProducts.find((product) => product.slug === slug) : undefined;
+  return undefined;
 }
 
 export async function getProductSlugs() {
+  if (shouldUseLocalFallback()) {
+    return mockProducts.map((product) => product.slug);
+  }
+
   try {
     const sanitySlugs = (await fetchSanityProductSlugs()) as Array<{ slug?: string }>;
     const slugs = sanitySlugs.map((item) => item.slug).filter((item): item is string => Boolean(item));
     if (slugs.length > 0) return slugs;
-    return shouldUseLocalFallback() ? mockProducts.map((product) => product.slug) : [];
+    return [];
   } catch {
-    return shouldUseLocalFallback() ? mockProducts.map((product) => product.slug) : [];
+    return [];
   }
 }

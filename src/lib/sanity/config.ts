@@ -5,12 +5,17 @@ export const sanityConfig = {
   useCdn: process.env.NODE_ENV === "production",
 };
 
-export const sanityFallbackMode = process.env.SANITY_FALLBACK_MODE ?? "off";
+export function getSanityFallbackMode() {
+  return (process.env.SANITY_FALLBACK_MODE ?? process.env.NEXT_PUBLIC_SANITY_FALLBACK_MODE ?? "off")
+    .trim()
+    .toLowerCase();
+}
 
 export function isSanityConfigured() {
   return Boolean(sanityConfig.projectId && sanityConfig.dataset);
 }
 
 export function shouldUseLocalFallback() {
-  return sanityFallbackMode === "local";
+  const mode = getSanityFallbackMode();
+  return mode === "on" || mode === "local" || mode === "true" || mode === "mock";
 }

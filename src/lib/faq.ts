@@ -20,6 +20,10 @@ function mapSanityFaqItemToFrontend(item: SanityFaqItem, index: number): ShopInf
 }
 
 export async function getFaqItems() {
+  if (shouldUseLocalFallback()) {
+    return mockFaqItems;
+  }
+
   try {
     const sanityFaqItems = (await fetchSanityFaqItems()) as SanityFaqItem[];
     const mapped = sanityFaqItems
@@ -27,8 +31,8 @@ export async function getFaqItems() {
       .filter((item): item is ShopInfoItem => item !== null);
 
     if (mapped.length > 0) return mapped;
-    return shouldUseLocalFallback() ? mockFaqItems : [];
+    return [];
   } catch {
-    return shouldUseLocalFallback() ? mockFaqItems : [];
+    return [];
   }
 }

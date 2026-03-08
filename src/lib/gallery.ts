@@ -28,6 +28,10 @@ function mapSanityGalleryItemToFrontend(item: SanityGalleryItem): GalleryItem | 
 }
 
 export async function getGalleryItems() {
+  if (shouldUseLocalFallback()) {
+    return mockGalleryItems;
+  }
+
   try {
     const sanityGalleryItems = (await fetchSanityGalleryItems()) as SanityGalleryItem[];
     const mapped = sanityGalleryItems
@@ -35,8 +39,8 @@ export async function getGalleryItems() {
       .filter((item): item is GalleryItem => item !== null);
 
     if (mapped.length > 0) return mapped;
-    return shouldUseLocalFallback() ? mockGalleryItems : [];
+    return [];
   } catch {
-    return shouldUseLocalFallback() ? mockGalleryItems : [];
+    return [];
   }
 }

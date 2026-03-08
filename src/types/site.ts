@@ -1,3 +1,6 @@
+import type { FontVariant } from "@/lib/fonts";
+import type { ThemeVariant } from "@/lib/themes";
+
 export type NavItem = {
   id?: string;
   label: string;
@@ -54,12 +57,6 @@ export type ShopInfoItem = {
   description: string;
 };
 
-export type AboutCard = {
-  title: string;
-  description: string;
-  tone?: "default" | "pink" | "green";
-};
-
 export type ContactLink = {
   label: string;
   href?: string;
@@ -78,13 +75,12 @@ export type SiteContent = {
   };
   hero: {
     note: string;
+    imageUrl?: string;
+    imageAlt?: string;
   };
+  fontVariant: FontVariant;
+  themeVariant: ThemeVariant;
   nav: NavItem[];
-  about: {
-    sectionText: string;
-    cards: AboutCard[];
-    pills: string[];
-  };
   contact: {
     whatsappPhone: string;
     instagramUrl: string;

@@ -22,6 +22,10 @@ function mapSanityCategoryToFrontend(category: SanityCategory): CategoryItem | n
 }
 
 export async function getCategories() {
+  if (shouldUseLocalFallback()) {
+    return mockCategories;
+  }
+
   try {
     const sanityCategories = (await fetchSanityCategories()) as SanityCategory[];
     const mapped = sanityCategories
@@ -29,8 +33,8 @@ export async function getCategories() {
       .filter((item): item is CategoryItem => item !== null);
 
     if (mapped.length > 0) return mapped;
-    return shouldUseLocalFallback() ? mockCategories : [];
+    return [];
   } catch {
-    return shouldUseLocalFallback() ? mockCategories : [];
+    return [];
   }
 }

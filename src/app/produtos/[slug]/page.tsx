@@ -63,15 +63,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <section className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
           <Container>
             <Link
-              href="/#produtos"
-              className="mb-6 inline-block rounded-full border-[4px] border-green-dark bg-surface px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-green-dark shadow-green-mid"
+              href="/produtos"
+              className="mb-6 inline-block rounded-full border border-green-dark/20 bg-surface px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-green-dark"
             >
               Voltar para produtos
             </Link>
 
             <div className="grid grid-cols-[1fr_1fr] gap-6 max-lg:grid-cols-1">
               <Card variant="flash">
-                <div className="flex aspect-square items-center justify-center border-b-[4px] border-b-green-dark bg-[linear-gradient(135deg,#f6d5df,#f8e6ec_42%,#dcebcf)] p-[22px]">
+                <div className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,#f6d5df,#f8e6ec_42%,#dcebcf)] p-[22px]">
                   <img
                     src={product.imagemPrincipal}
                     alt={product.nome}
@@ -80,7 +80,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
 
                 <div className="p-[22px] max-md:p-5">
-                  <div className="w-fit rounded-full border-[4px] border-green-dark bg-pink-soft px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-green-dark">
+                  <div className="w-fit rounded-full border border-green-dark/20 bg-pink-soft px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-green-dark">
                     {product.categoria}
                   </div>
                   <h1 className="mt-4 text-[clamp(30px,4.6vw,48px)] font-black uppercase leading-[0.92] text-green-dark">

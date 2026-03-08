@@ -96,4 +96,4 @@ Useful files:
 Environment:
 1. Copy `.env.example` to `.env.local`.
 2. Keep the provided Sanity values or adjust if needed.
-3. `SANITY_FALLBACK_MODE=off` (default) uses Sanity as source of truth; set `local` only for temporary local fallback.
+3. `SANITY_FALLBACK_MODE=off` uses Sanity as source of truth; set `on` to enable local mock fallback.

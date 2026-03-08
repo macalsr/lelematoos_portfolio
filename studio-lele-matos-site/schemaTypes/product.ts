@@ -10,6 +10,7 @@ export const productType = defineType({
     { name: "descriptions", title: "Descrições" },
     { name: "siteDisplay", title: "Exibição no site", options: { columns: 2 } },
     { name: "details", title: "Detalhes do produto", options: { columns: 2 } },
+    { name: "status", title: "Status do cadastro" },
   ],
   fields: [
     defineField({
@@ -122,14 +123,6 @@ export const productType = defineType({
       initialValue: false,
     }),
     defineField({
-      name: "currentCollection",
-      title: "Faz parte da coleção atual",
-      type: "boolean",
-      description: "Marque para incluir na seção de coleção/lançamentos.",
-      fieldset: "siteDisplay",
-      initialValue: false,
-    }),
-    defineField({
       name: "featured",
       title: "Produto em destaque",
       type: "boolean",
@@ -145,16 +138,30 @@ export const productType = defineType({
       fieldset: "siteDisplay",
       initialValue: true,
     }),
+    defineField({
+      name: "archived",
+      title: "Arquivar este produto",
+      type: "boolean",
+      fieldset: "status",
+      description:
+        "Marque para ocultar este produto do site sem excluir o cadastro. Use quando quiser pausar a exibição.",
+      initialValue: false,
+    }),
   ],
   preview: {
     select: {
       title: "name",
       subtitle: "category.name",
       media: "mainImage",
+      archived: "archived",
     },
-    prepare: ({ title, subtitle, media }) => ({
+    prepare: ({ title, subtitle, media, archived }) => ({
       title,
-      subtitle: subtitle ? `Categoria: ${subtitle}` : "Sem categoria",
+      subtitle: archived
+        ? `Arquivado · ${subtitle ? `Categoria: ${subtitle}` : "Sem categoria"}`
+        : subtitle
+          ? `Categoria: ${subtitle}`
+          : "Sem categoria",
       media,
     }),
   },

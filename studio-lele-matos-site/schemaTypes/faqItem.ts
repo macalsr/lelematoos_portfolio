@@ -20,11 +20,24 @@ export const faqItemType = defineType({
       description: "Resposta mostrada logo abaixo da pergunta.",
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: "archived",
+      title: "Arquivar esta pergunta",
+      type: "boolean",
+      description:
+        "Marque para ocultar esta pergunta do site sem excluir o cadastro.",
+      initialValue: false,
+    }),
   ],
   preview: {
     select: {
       title: "question",
       subtitle: "answer",
+      archived: "archived",
     },
+    prepare: ({ title, subtitle, archived }) => ({
+      title,
+      subtitle: archived ? `Arquivada · ${subtitle}` : subtitle,
+    }),
   },
 });

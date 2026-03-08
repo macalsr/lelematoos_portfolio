@@ -33,6 +33,9 @@ function getSeoFallback(): SiteSeo {
 
 export async function getSiteSeo(): Promise<SiteSeo> {
   const fallback = getSeoFallback();
+  if (shouldUseLocalFallback()) {
+    return fallback;
+  }
 
   try {
     const settings = (await fetchSanitySiteSettings()) as SanitySiteSettingsSeo | null;

@@ -17,45 +17,15 @@ export const siteContent: SiteContent = {
   hero: {
     note: "Marca autoral · peças em tiragem especial · universo old school",
   },
+  fontVariant: "classic-script",
+  themeVariant: "classic-rose",
   nav: [
-    { id: "nav-produtos", label: "Produtos", href: "#produtos" },
+    { id: "nav-produtos", label: "Produtos", href: "/produtos" },
     { id: "nav-categorias", label: "Categorias", href: "#categorias" },
-    { id: "nav-sobre", label: "Sobre", href: "#sobre" },
-    { id: "nav-galeria", label: "Galeria", href: "#galeria" },
-    { id: "nav-colecao", label: "Coleção", href: "#colecao" },
     { id: "nav-faq", label: "FAQ", href: "#faq" },
     { id: "nav-contato", label: "Contato", href: "#contato" },
     { id: "nav-agendar", label: "Agendar", href: "#contato", cta: true },
   ],
-  about: {
-    sectionText:
-      "A Lele Matoos é tatuadora e artista visual. A loja nasce desse repertório old school e transforma essa linguagem em peças autorais.",
-    cards: [
-      {
-        title: "Origem no tattoo",
-        description:
-          "A marca nasce da estética old school da Lele: traço firme, símbolos clássicos e leitura forte.",
-      },
-      {
-        title: "Peças autorais",
-        description:
-          "Bandeiras, prints, ecobags e itens de coleção criados a partir do universo visual da artista.",
-        tone: "pink",
-      },
-      {
-        title: "Lançamentos curados",
-        description:
-          "As coleções entram em ciclos, com tiragens limitadas e foco em identidade artística.",
-        tone: "green",
-      },
-    ],
-    pills: [
-      "Marca autoral de artista tatuadora",
-      "Coleções com linguagem old school",
-      "Peças para decorar, vestir e colecionar",
-      "Encomendas e dúvidas por WhatsApp",
-    ],
-  },
   contact: {
     whatsappPhone: WHATSAPP_PHONE,
     instagramUrl: INSTAGRAM_URL,

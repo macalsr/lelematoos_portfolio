@@ -70,6 +70,75 @@ export const products: ProductItem[] = [
       "Oi! Quero detalhes de medidas e tecido da Ecobag Estrela Old School.",
     kind: "star",
   },
+  {
+    id: "prod-004",
+    slug: "bandeira-andorinha-old-school",
+    nome: "Bandeira Andorinha Old School",
+    categoria: "bandeiras",
+    preco: "R$ 230",
+    imagemPrincipal: "/products/bandeira-rosa-classica.jpg",
+    descricaoCurta:
+      "Bandeira autoral com composição clássica de andorinha em linguagem old school.",
+    destaque: true,
+    novidade: true,
+    colecaoAtual: true,
+    disponivel: true,
+    descricaoLonga:
+      "Peça decorativa em tiragem limitada, inspirada na iconografia tradicional da tatuagem. Ideal para quem quer levar o universo da artista para casa.",
+    material: "Tecido premium com impressão de alta definição",
+    tamanho: "90 x 130 cm",
+    primaryMessage:
+      "Oi! Tenho interesse na Bandeira Andorinha Old School. Está disponível?",
+    secondaryMessage:
+      "Oi! Quero mais informações sobre acabamento e tamanho da Bandeira Andorinha Old School.",
+    kind: "rose",
+  },
+  {
+    id: "prod-005",
+    slug: "print-rosa-tradicional",
+    nome: "Print Rosa Tradicional",
+    categoria: "prints",
+    preco: "R$ 110",
+    imagemPrincipal: "/products/print-coracao-vintage.jpg",
+    descricaoCurta:
+      "Print com rosa tradicional, contraste forte e assinatura visual da marca.",
+    destaque: true,
+    novidade: false,
+    colecaoAtual: true,
+    disponivel: true,
+    descricaoLonga:
+      "Arte impressa em papel fine art com acabamento fosco, feita para compor paredes com estética vintage e identidade autoral.",
+    material: "Papel fine art 240g",
+    tamanho: "A3 (29,7 x 42 cm)",
+    primaryMessage:
+      "Oi! Quero comprar o Print Rosa Tradicional. Como faço o pedido?",
+    secondaryMessage:
+      "Oi! Tenho dúvida sobre envio e embalagem do Print Rosa Tradicional.",
+    kind: "heart",
+  },
+  {
+    id: "prod-006",
+    slug: "ecobag-coracao-classico",
+    nome: "Ecobag Coração Clássico",
+    categoria: "ecobags",
+    preco: "R$ 85",
+    imagemPrincipal: "/products/ecobag-estrela-old-school.jpg",
+    descricaoCurta:
+      "Ecobag de uso diário com arte clássica inspirada no repertório tattoo da Lele.",
+    destaque: true,
+    novidade: true,
+    colecaoAtual: false,
+    disponivel: true,
+    descricaoLonga:
+      "Ecobag resistente e prática, com impressão autoral em tiragem especial para levar o universo old school da marca no dia a dia.",
+    material: "Algodão cru reforçado",
+    tamanho: "38 x 42 cm",
+    primaryMessage:
+      "Oi! Quero comprar a Ecobag Coração Clássico. Ainda tem em estoque?",
+    secondaryMessage:
+      "Oi! Pode me passar mais detalhes da Ecobag Coração Clássico?",
+    kind: "star",
+  },
 ];
 
 export const featuredProducts = products.filter((product) => product.destaque);

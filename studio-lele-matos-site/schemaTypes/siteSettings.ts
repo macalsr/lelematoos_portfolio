@@ -7,8 +7,6 @@ export const siteSettingsType = defineType({
   fieldsets: [
     { name: "seo", title: "SEO" },
     { name: "brand", title: "Marca e topo" },
-    { name: "navigation", title: "Navegação" },
-    { name: "about", title: "Seção Sobre" },
     { name: "contact", title: "Contato" },
   ],
   fields: [
@@ -72,7 +70,6 @@ export const siteSettingsType = defineType({
       type: "string",
       fieldset: "brand",
       description: "Texto principal exibido no centro do topo da página.",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "heroSubtitle",
@@ -80,7 +77,6 @@ export const siteSettingsType = defineType({
       type: "string",
       fieldset: "brand",
       description: "Texto menor abaixo do título principal no hero.",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "heroNote",
@@ -90,6 +86,23 @@ export const siteSettingsType = defineType({
       description: "Frase curta de apoio que aparece no hero.",
     }),
     defineField({
+      name: "heroImage",
+      title: "Imagem do hero",
+      type: "image",
+      fieldset: "brand",
+      description:
+        "Imagem principal exibida no hero. Se não enviar, o site usa o visual padrão.",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo da imagem",
+          type: "string",
+          description: "Descrição da imagem para acessibilidade.",
+        }),
+      ],
+    }),
+    defineField({
       name: "brandTagline",
       title: "Tagline da marca",
       type: "string",
@@ -97,104 +110,38 @@ export const siteSettingsType = defineType({
       description: "Texto curto exibido no header, abaixo do nome da marca.",
     }),
     defineField({
-      name: "navItems",
-      title: "Links do menu",
-      type: "array",
-      fieldset: "navigation",
-      description: "Itens de navegação do menu principal (desktop e mobile).",
-      of: [
-        defineField({
-          name: "item",
-          title: "Item do menu",
-          type: "object",
-          fields: [
-            defineField({
-              name: "id",
-              title: "Identificador interno (opcional)",
-              type: "string",
-              description: "Não aparece no site. Serve para organização técnica.",
-            }),
-            defineField({
-              name: "label",
-              title: "Texto do menu",
-              type: "string",
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: "href",
-              title: "Link do menu",
-              type: "string",
-              description: "Exemplo: #produtos, #contato",
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: "cta",
-              title: "Botão de destaque",
-              type: "boolean",
-              description: "Marque se este item deve aparecer como botão destacado.",
-              initialValue: false,
-            }),
-          ],
-        }),
-      ],
-    }),
-    defineField({
-      name: "aboutText",
-      title: "Texto da seção Sobre",
-      type: "text",
-      rows: 4,
-      fieldset: "about",
-      description: "Texto principal exibido na seção Sobre.",
+      name: "fontVariant",
+      title: "Estilo de fonte do site",
+      type: "string",
+      fieldset: "brand",
+      description: "Escolha uma combinação tipográfica pronta para o site.",
+      options: {
+        list: [
+          { title: "Clássico Script", value: "classic-script" },
+          { title: "Vintage Marcante", value: "vintage-bold" },
+          { title: "Editorial Limpo", value: "clean-editorial" },
+          { title: "Oldschool Suave", value: "oldschool-soft" },
+        ],
+      },
+      initialValue: "classic-script",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "aboutCards",
-      title: "Cards da seção Sobre",
-      type: "array",
-      fieldset: "about",
-      description: "Blocos de conteúdo exibidos na seção Sobre.",
-      of: [
-        defineField({
-          name: "card",
-          title: "Card",
-          type: "object",
-          fields: [
-            defineField({
-              name: "title",
-              title: "Título do card",
-              type: "string",
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: "description",
-              title: "Descrição do card",
-              type: "text",
-              rows: 3,
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: "tone",
-              title: "Cor de destaque do card",
-              type: "string",
-              options: {
-                list: [
-                  { title: "Padrão", value: "default" },
-                  { title: "Rosa", value: "pink" },
-                  { title: "Verde", value: "green" },
-                ],
-              },
-            }),
-          ],
-        }),
-      ],
-    }),
-    defineField({
-      name: "aboutPills",
-      title: "Pílulas da seção Sobre",
-      type: "array",
-      fieldset: "about",
-      description: "Frases curtas de apoio da seção Sobre.",
-      of: [{ type: "string" }],
+      name: "themeVariant",
+      title: "Paleta de cores do site",
+      type: "string",
+      fieldset: "brand",
+      description: "Escolha uma paleta pronta para mudar o visual sem quebrar o design.",
+      options: {
+        list: [
+          { title: "Clássico Rosé", value: "classic-rose" },
+          { title: "Oliva Vintage", value: "olive-vintage" },
+          { title: "Escuro Old School", value: "dark-oldschool" },
+          { title: "Creme Rosado", value: "cream-pink" },
+        ],
+      },
+      initialValue: "classic-rose",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "whatsapp",
