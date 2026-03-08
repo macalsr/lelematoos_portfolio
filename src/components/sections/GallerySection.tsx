@@ -1,11 +1,14 @@
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { TattooIcon } from "@/components/ui/TattooIcons";
-import { galleryItems } from "@/data/gallery";
 import { sectionStyles } from "@/lib/sectionStyles";
+import type { GalleryItem } from "@/types/site";
 
-export function GallerySection() {
+type GallerySectionProps = {
+  items: GalleryItem[];
+};
+
+export function GallerySection({ items }: GallerySectionProps) {
   return (
     <section id="galeria" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
       <Container>
@@ -16,12 +19,14 @@ export function GallerySection() {
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4`}>
-          {galleryItems.map((item) => (
+          {items.map((item) => (
             <Card key={item.id} variant="portfolio">
               <div className="flex aspect-[1/1.1] items-center justify-center border-b-[4px] border-b-green-dark bg-[linear-gradient(135deg,#f3d4df,#dcebcf)] p-[18px]">
-                <TattooIcon
-                  kind={item.kind}
-                  className={item.kind === "rose" ? "w-[160px] max-md:w-[140px]" : "h-[180px] w-[180px] max-md:h-[150px] max-md:w-[150px]"}
+                <img
+                  src={item.imageUrl}
+                  alt={item.alt}
+                  className="h-full w-full rounded-xl object-cover"
+                  loading="lazy"
                 />
               </div>
 

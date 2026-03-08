@@ -1,9 +1,13 @@
-import { siteContent } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { RoseIcon } from "@/components/ui/TattooIcons";
 import { sectionStyles } from "@/lib/sectionStyles";
+import type { SiteContent } from "@/types/site";
 
-export function Hero() {
+type HeroProps = {
+  content: SiteContent;
+};
+
+export function Hero({ content }: HeroProps) {
   return (
     <section id="home" className={sectionStyles.hero}>
       <Container className="flex items-center justify-center">
@@ -14,15 +18,15 @@ export function Hero() {
             </div>
 
             <h1 className="m-0 font-imperial text-[clamp(62px,8vw,104px)] font-normal leading-[0.9] text-pink-shock">
-              {siteContent.brand.name}
+              {content.brand.name}
             </h1>
             <div className="text-xs font-black uppercase tracking-[0.24em] text-green-mid">
-              {siteContent.brand.subname}
+              {content.brand.subname}
             </div>
           </div>
 
           <p className="px-2 text-center text-[13px] font-extrabold uppercase tracking-[0.14em] text-muted max-md:text-xs max-md:leading-[1.55] max-md:tracking-[0.1em]">
-            {siteContent.hero.note}
+            {content.hero.note}
           </p>
         </div>
       </Container>

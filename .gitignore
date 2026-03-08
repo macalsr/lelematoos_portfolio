@@ -77,6 +77,10 @@ tmp/
 temp/
 .tmp/
 .tmp*
+.sanity/
+studio-lele-matos-site/node_modules/
+studio-lele-matos-site/dist/
+studio-lele-matos-site/.sanity/
 
 # optional local assets generated during work
 /public/uploads

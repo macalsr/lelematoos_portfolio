@@ -1,4 +1,4 @@
-import type { SiteContent } from "@/types/site";
+﻿import type { SiteContent } from "@/types/site";
 
 const WHATSAPP_PHONE = "5561982371005";
 const INSTAGRAM_URL = "https://www.instagram.com/lelematoos/";
@@ -18,16 +18,18 @@ export const siteContent: SiteContent = {
     note: "Marca autoral · peças em tiragem especial · universo old school",
   },
   nav: [
-    { label: "Produtos", href: "#produtos" },
-    { label: "Categorias", href: "#categorias" },
-    { label: "Sobre", href: "#sobre" },
-    { label: "Galeria", href: "#galeria" },
-    { label: "Coleção", href: "#colecao" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contato", href: "#contato" },
-    { label: "Agendar", href: "#contato", cta: true },
+    { id: "nav-produtos", label: "Produtos", href: "#produtos" },
+    { id: "nav-categorias", label: "Categorias", href: "#categorias" },
+    { id: "nav-sobre", label: "Sobre", href: "#sobre" },
+    { id: "nav-galeria", label: "Galeria", href: "#galeria" },
+    { id: "nav-colecao", label: "Coleção", href: "#colecao" },
+    { id: "nav-faq", label: "FAQ", href: "#faq" },
+    { id: "nav-contato", label: "Contato", href: "#contato" },
+    { id: "nav-agendar", label: "Agendar", href: "#contato", cta: true },
   ],
   about: {
+    sectionText:
+      "A Lele Matoos é tatuadora e artista visual. A loja nasce desse repertório old school e transforma essa linguagem em peças autorais.",
     cards: [
       {
         title: "Origem no tattoo",

@@ -1,0 +1,8 @@
+{
+  "name": "studio-lele-matos-site",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "styled-components": "^6.3.11"
+  }
+}

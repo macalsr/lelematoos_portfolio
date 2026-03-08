@@ -1,10 +1,14 @@
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { shopInfoItems } from "@/data/shopInfo";
 import { sectionStyles } from "@/lib/sectionStyles";
+import type { ShopInfoItem } from "@/types/site";
 
-export function ShopInfoSection() {
+type ShopInfoSectionProps = {
+  items: ShopInfoItem[];
+};
+
+export function ShopInfoSection({ items }: ShopInfoSectionProps) {
   return (
     <section id="faq" className={sectionStyles.base}>
       <Container>
@@ -15,7 +19,7 @@ export function ShopInfoSection() {
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1`}>
-          {shopInfoItems.map((item) => (
+          {items.map((item) => (
             <Card key={item.id} variant="process">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full border-[4px] border-green-dark bg-green-soft text-lg font-black text-green-dark">
                 {item.id}

@@ -1,8 +1,19 @@
 import type { CategoryItem } from "@/types/site";
 
 export const productCategories: CategoryItem[] = [
-  { id: "bandeiras", title: "Bandeiras", subtitle: "Arte para parede" },
-  { id: "prints", title: "Prints", subtitle: "Tiragens autorais" },
-  { id: "ecobags", title: "Ecobags", subtitle: "Uso diário com identidade" },
-  { id: "edicoes", title: "Edições", subtitle: "Peças limitadas" },
+  {
+    id: "bandeiras",
+    nome: "Bandeiras",
+    descricao: "Arte para parede em formato autoral",
+  },
+  {
+    id: "prints",
+    nome: "Prints",
+    descricao: "Tiragens artísticas para decoração",
+  },
+  {
+    id: "ecobags",
+    nome: "Ecobags",
+    descricao: "Peças utilitárias com linguagem old school",
+  },
 ];

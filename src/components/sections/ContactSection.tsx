@@ -1,13 +1,18 @@
-import { SectionHeading } from "@/components/layout/SectionHeading";
+﻿import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { siteContent } from "@/data/site";
 import { sectionStyles } from "@/lib/sectionStyles";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { messageStoreInfo } from "@/lib/whatsappMessages";
+import type { SiteContent } from "@/types/site";
 
-const PHONE = siteContent.contact.whatsappPhone;
+type ContactSectionProps = {
+  content: SiteContent;
+};
 
-export function ContactSection() {
+export function ContactSection({ content }: ContactSectionProps) {
+  const storeInfoHref = buildWhatsAppUrl(content.contact.whatsappPhone, messageStoreInfo());
+
   return (
     <>
       <section id="contato" className={`${sectionStyles.base} ${sectionStyles.tintedTop}`}>
@@ -21,19 +26,19 @@ export function ContactSection() {
           <div className={`${sectionStyles.contentGridTop} grid grid-cols-[1.1fr_0.9fr] items-center gap-6 rounded-[30px] border-[4px] border-green-dark bg-pink-soft p-[34px] shadow-[8px_8px_0_#193f31] max-lg:grid-cols-1 max-md:gap-5 max-md:p-5`}>
             <div>
               <h3 className="mb-3 text-[clamp(28px,4vw,42px)] font-black uppercase leading-none text-green-dark max-md:leading-[1.05]">
-                {siteContent.contact.cityTitle}
+                {content.contact.cityTitle}
               </h3>
               <p className="m-0 max-w-[560px] text-lg leading-[1.75] text-muted max-md:text-[15px] max-md:leading-[1.65]">
-                {siteContent.contact.description}
+                {content.contact.description}
               </p>
             </div>
 
             <div className="grid gap-[14px]">
-              {siteContent.contact.actions.map((action) =>
+              {content.contact.actions.map((action) =>
                 action.href ? (
                   <Button
                     key={action.label}
-                    href={action.href}
+                    href={action.href.includes("wa.me") ? storeInfoHref : action.href}
                     variant="contactAction"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -50,26 +55,16 @@ export function ContactSection() {
                 ),
               )}
 
-              <Button
-                href={buildWhatsAppUrl(PHONE, "Oi! Quero comprar produtos da marca Lele Matoos.")}
-                variant="contactMain"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {siteContent.contact.mainCtaText}
+              <Button href={storeInfoHref} variant="contactMain" target="_blank" rel="noopener noreferrer">
+                {content.contact.mainCtaText}
               </Button>
             </div>
           </div>
         </Container>
       </section>
 
-      <Button
-        href={buildWhatsAppUrl(PHONE, "Oi! Quero comprar produtos da marca Lele Matoos.")}
-        variant="floating"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {siteContent.contact.floatingText}
+      <Button href={storeInfoHref} variant="floating" target="_blank" rel="noopener noreferrer">
+        {content.contact.floatingText}
       </Button>
     </>
   );

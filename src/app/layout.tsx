@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Imperial_Script } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { siteContent } from "@/data/site";
+import { getSiteSeo } from "@/lib/siteSeo";
 import "./globals.css";
 
 const imperialScript = Imperial_Script({
@@ -10,10 +10,26 @@ const imperialScript = Imperial_Script({
   weight: "400",
 });
 
-export const metadata: Metadata = {
-  title: siteContent.seo.title,
-  description: siteContent.seo.description,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSiteSeo();
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    openGraph: seo.ogImageUrl
+      ? {
+          title: seo.title,
+          description: seo.description,
+          images: [
+            {
+              url: seo.ogImageUrl,
+              alt: seo.ogImageAlt ?? seo.title,
+            },
+          ],
+        }
+      : undefined,
+  };
+}
 
 export default function RootLayout({
   children,

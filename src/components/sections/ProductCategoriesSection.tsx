@@ -1,10 +1,15 @@
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { productCategories } from "@/data/categories";
 import { sectionStyles } from "@/lib/sectionStyles";
+import type { CategoryItem, ProductItem } from "@/types/site";
 
-export function ProductCategoriesSection() {
+type ProductCategoriesSectionProps = {
+  products: ProductItem[];
+  categories: CategoryItem[];
+};
+
+export function ProductCategoriesSection({ products, categories }: ProductCategoriesSectionProps) {
   return (
     <section id="categorias" className={sectionStyles.base}>
       <Container>
@@ -15,13 +20,16 @@ export function ProductCategoriesSection() {
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-3`}>
-          {productCategories.map((category) => (
+          {categories.map((category) => (
             <Card key={category.id} variant="quick">
               <strong className="mb-1.5 block text-[22px] font-black uppercase text-green-dark max-md:text-[20px]">
-                {category.title}
+                {category.nome}
               </strong>
               <span className="text-xs font-black uppercase tracking-[0.16em] text-muted">
-                {category.subtitle}
+                {category.descricao}
+              </span>
+              <span className="mt-2 block text-[11px] font-black uppercase tracking-[0.14em] text-green-mid">
+                {products.filter((product) => product.categoria === category.id).length} produtos
               </span>
             </Card>
           ))}
