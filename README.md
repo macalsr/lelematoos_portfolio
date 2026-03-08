@@ -12,6 +12,9 @@ Landing page for Lele Matoos (tattoo artist) built with Next.js + TypeScript + T
 - `npm run build` - production build
 - `npm run start` - run production build
 - `npm run lint` - lint project
+- `npm run sanity:dev` - run Sanity Studio
+- `npm run sanity:build` - build Sanity Studio
+- `npm run sanity:deploy` - deploy Sanity Studio
 
 ## Run locally
 1. Install dependencies:
@@ -62,3 +65,35 @@ Edit only:
 ## Header behavior
 - Desktop: full visible navigation
 - Mobile: compact fixed header with menu button and expandable menu
+
+## Sanity CMS (initial setup)
+Studio is embedded in this Next.js app at:
+- `/admin`
+
+Studio source/config folder:
+- `studio-lele-matos-site/`
+
+Configured Sanity project:
+- `projectId: qtnabn6i`
+- `dataset: production`
+- `basePath: /admin`
+
+Current schemas:
+- `product`
+- `category`
+- `siteSettings`
+- `faqItem`
+
+Useful files:
+- `studio-lele-matos-site/sanity.config.ts`
+- `studio-lele-matos-site/sanity.cli.ts`
+- `studio-lele-matos-site/schemaTypes/*`
+- `src/app/admin/[[...tool]]/page.tsx`
+- `src/lib/sanity/client.ts`
+- `src/lib/sanity/queries.ts`
+- `src/lib/sanity/fetchers.ts`
+
+Environment:
+1. Copy `.env.example` to `.env.local`.
+2. Keep the provided Sanity values or adjust if needed.
+3. `SANITY_FALLBACK_MODE=off` uses Sanity as source of truth; set `on` to enable local mock fallback.

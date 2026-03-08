@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -11,14 +11,23 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { messageProductInterest } from "@/lib/whatsappMessages";
 import type { CategoryItem, ProductCategoryId, ProductItem } from "@/types/site";
 
-type FeaturedProductsSectionProps = {
+type ProductsCatalogSectionProps = {
   products: ProductItem[];
   categories: CategoryItem[];
   whatsappPhone: string;
+  initialCategory?: string;
 };
 
-export function FeaturedProductsSection({ products, categories, whatsappPhone }: FeaturedProductsSectionProps) {
-  const [activeCategory, setActiveCategory] = useState<ProductCategoryId | "todas">("todas");
+export function ProductsCatalogSection({
+  products,
+  categories,
+  whatsappPhone,
+  initialCategory,
+}: ProductsCatalogSectionProps) {
+  const [activeCategory, setActiveCategory] = useState<ProductCategoryId | "todas">(() => {
+    if (!initialCategory) return "todas";
+    return categories.some((category) => category.id === initialCategory) ? initialCategory : "todas";
+  });
   const categoryNames = useMemo(
     () => new Map(categories.map((category) => [category.id, category.nome])),
     [categories],
@@ -27,23 +36,19 @@ export function FeaturedProductsSection({ products, categories, whatsappPhone }:
     const list = products.filter((product) => product.disponivel);
     return list.sort((a, b) => Number(b.destaque) - Number(a.destaque));
   }, [products]);
-  const highlightedProducts = useMemo(() => {
-    const list = availableProducts.filter((product) => product.destaque);
-    return list.length > 0 ? list : availableProducts.slice(0, 6);
-  }, [availableProducts]);
 
   const visibleProducts = useMemo(() => {
-    if (activeCategory === "todas") return highlightedProducts;
-    return highlightedProducts.filter((product) => product.categoria === activeCategory);
-  }, [activeCategory, highlightedProducts]);
+    if (activeCategory === "todas") return availableProducts;
+    return availableProducts.filter((product) => product.categoria === activeCategory);
+  }, [activeCategory, availableProducts]);
 
   return (
     <section id="produtos" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
       <Container>
         <SectionHeading
-          kicker="Produtos em destaque"
-          title="Peças autorais da marca"
-          text="A linguagem old school da Lele Matoos vira produto em bandeiras, prints e ecobags com identidade própria."
+          kicker="Catálogo"
+          title="Todos os produtos da marca"
+          text="Aqui você encontra todas as peças autorais disponíveis, organizadas por categoria."
         />
 
         <div className="mt-6 flex flex-wrap gap-2 max-md:mt-5">
@@ -122,12 +127,6 @@ export function FeaturedProductsSection({ products, categories, whatsappPhone }:
             Nenhum produto nessa categoria no momento.
           </p>
         ) : null}
-
-        <div className="mt-6 flex justify-center">
-          <Button href="/produtos" variant="miniSecondary">
-            Ver todos os produtos
-          </Button>
-        </div>
       </Container>
     </section>
   );

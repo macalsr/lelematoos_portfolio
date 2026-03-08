@@ -1,19 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { siteContent } from "@/data/site";
+import { siteContent as mockSiteContent } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import type { SiteContent } from "@/types/site";
 
-const mobileMenuLinks = siteContent.nav.filter((item) => !item.cta);
-const ctaItem = siteContent.nav.find((item) => item.cta);
+function toSectionHref(href: string) {
+  return href.startsWith("#") ? `/${href}` : href;
+}
 
-export function Header() {
+function getNavItemKey(item: SiteContent["nav"][number]) {
+  return item.id ?? `${item.label}-${item.href}`;
+}
+
+type HeaderProps = {
+  content: SiteContent;
+};
+
+export function Header({ content }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const navItems = content.nav.length > 0 ? content.nav : mockSiteContent.nav;
+  const brandName = content.brand.name || mockSiteContent.brand.name;
+  const brandTagline = content.brand.tagline || mockSiteContent.brand.tagline;
+  const mobileMenuLinks = navItems.filter((item) => !item.cta);
+  const ctaItem = navItems.find((item) => item.cta);
 
   const agendarHref = buildWhatsAppUrl(
-    siteContent.contact.whatsappPhone,
+    content.contact.whatsappPhone,
     "Oi! Quero falar sobre produtos da marca Lele Matoos.",
   );
 
@@ -25,26 +40,26 @@ export function Header() {
       style={{ position: "sticky", top: 0, zIndex: 80 }}
     >
       <Container className="flex min-h-[84px] flex-wrap items-center justify-between gap-6 max-md:min-h-[52px] max-md:gap-2 max-md:py-1">
-        <a href="#home" className="flex min-w-0 flex-col gap-1" onClick={closeMenu}>
-          <strong className="text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
-            {siteContent.brand.name}
+        <a href={toSectionHref("#home")} className="flex min-w-0 flex-col gap-1" onClick={closeMenu}>
+          <strong className="font-logo text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
+            {brandName}
           </strong>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-muted max-md:hidden">
-            {siteContent.brand.tagline}
+          <span className="font-ui text-[11px] font-extrabold uppercase tracking-[0.24em] text-muted max-md:hidden">
+            {brandTagline}
           </span>
         </a>
 
         <nav className="flex min-w-0 flex-wrap items-center gap-[18px] max-md:hidden">
-          {siteContent.nav.map((item) =>
+          {navItems.map((item) =>
             item.cta ? (
-              <Button key={item.href} href={item.href} variant="navCta">
+              <Button key={getNavItemKey(item)} href={toSectionHref(item.href)} variant="navCta">
                 {item.label}
               </Button>
             ) : (
               <a
-                key={item.href}
-                href={item.href}
-                className="whitespace-nowrap text-[13px] font-black uppercase tracking-[0.16em] text-green-dark max-[380px]:text-xs max-[380px]:tracking-[0.12em]"
+                key={getNavItemKey(item)}
+                href={toSectionHref(item.href)}
+                className="font-ui whitespace-nowrap text-[13px] font-black uppercase tracking-[0.16em] text-green-dark max-[380px]:text-xs max-[380px]:tracking-[0.12em]"
               >
                 {item.label}
               </a>
@@ -57,7 +72,7 @@ export function Header() {
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
           aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
-          className="hidden min-h-10 items-center rounded-xl border-[3px] border-green-dark bg-pink-soft px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.1em] text-green-dark shadow-green-mid max-md:inline-flex"
+          className="hidden min-h-10 items-center rounded-xl border border-green-dark/20 bg-pink-soft px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.1em] text-green-dark max-md:inline-flex"
           onClick={() => setIsOpen((current) => !current)}
         >
           {isOpen ? "Fechar" : "Menu"}
@@ -73,19 +88,19 @@ export function Header() {
             <nav className="grid gap-1.5">
               {mobileMenuLinks.map((item) => (
                 <a
-                  key={item.href}
-                  href={item.href}
+                  key={getNavItemKey(item)}
+                  href={toSectionHref(item.href)}
                   onClick={closeMenu}
-                  className="rounded-2xl border-[4px] border-green-dark bg-surface px-3.5 py-2.5 text-xs font-black uppercase tracking-[0.1em] text-green-dark shadow-green-mid"
+                  className="rounded-2xl border border-green-dark/20 bg-surface px-3.5 py-2.5 text-xs font-black uppercase tracking-[0.1em] text-green-dark"
                 >
                   {item.label}
                 </a>
               ))}
 
               <a
-                href={ctaItem?.href ?? agendarHref}
+                href={toSectionHref(ctaItem?.href ?? agendarHref)}
                 onClick={closeMenu}
-                className="rounded-2xl border-[4px] border-green-dark bg-green-dark px-3.5 py-2.5 text-center text-xs font-black uppercase tracking-[0.1em] text-white shadow-[4px_4px_0_#cb5c88]"
+                className="rounded-2xl border border-green-dark/20 bg-button-primary px-3.5 py-2.5 text-center text-xs font-black uppercase tracking-[0.1em] text-white"
               >
                 {ctaItem?.label ?? "Agendar"}
               </a>

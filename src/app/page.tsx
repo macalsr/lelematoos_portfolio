@@ -1,27 +1,34 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { CollectionSection } from "@/components/sections/CollectionSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { FeaturedProductsSection } from "@/components/sections/FeaturedProductsSection";
-import { GallerySection } from "@/components/sections/GallerySection";
 import { Hero } from "@/components/sections/Hero";
 import { ProductCategoriesSection } from "@/components/sections/ProductCategoriesSection";
 import { ShopInfoSection } from "@/components/sections/ShopInfoSection";
+import { getCategories } from "@/lib/categories";
+import { getFaqItems } from "@/lib/faq";
+import { getProducts } from "@/lib/products";
+import { getSiteContent } from "@/lib/siteContent";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+  const categories = await getCategories();
+  const faqItems = await getFaqItems();
+  const content = await getSiteContent();
+
   return (
     <>
-      <Header />
+      <Header content={content} />
       <main>
-        <Hero />
-        <FeaturedProductsSection />
-        <ProductCategoriesSection />
-        <AboutSection />
-        <GallerySection />
-        <CollectionSection />
-        <ShopInfoSection />
-        <ContactSection />
+        <Hero content={content} />
+        <FeaturedProductsSection
+          products={products}
+          categories={categories}
+          whatsappPhone={content.contact.whatsappPhone}
+        />
+        <ProductCategoriesSection products={products} categories={categories} />
+        <ShopInfoSection items={faqItems} />
+        <ContactSection content={content} />
       </main>
       <Footer />
     </>

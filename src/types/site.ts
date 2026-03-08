@@ -1,4 +1,8 @@
+import type { FontVariant } from "@/lib/fonts";
+import type { ThemeVariant } from "@/lib/themes";
+
 export type NavItem = {
+  id?: string;
   label: string;
   href: string;
   cta?: boolean;
@@ -6,21 +10,32 @@ export type NavItem = {
 
 export type ProductKind = "rose" | "heart" | "star" | "leaf";
 
+export type ProductCategoryId = string;
+
 export type ProductItem = {
   id: string;
-  tag: string;
-  title: string;
-  description: string;
-  price: string;
+  slug: string;
+  nome: string;
+  categoria: ProductCategoryId;
+  preco: string;
+  imagemPrincipal: string;
+  descricaoCurta: string;
+  destaque: boolean;
+  novidade: boolean;
+  colecaoAtual: boolean;
+  disponivel: boolean;
+  descricaoLonga: string;
+  material: string;
+  tamanho: string;
   primaryMessage: string;
   secondaryMessage: string;
   kind: ProductKind;
 };
 
 export type CategoryItem = {
-  id: string;
-  title: string;
-  subtitle: string;
+  id: ProductCategoryId;
+  nome: string;
+  descricao: string;
 };
 
 export type GalleryKind = "heart" | "star" | "rose" | "leaf";
@@ -29,27 +44,17 @@ export type GalleryItem = {
   id: string;
   title: string;
   description: string;
-  kind: GalleryKind;
-};
-
-export type CollectionItem = {
-  id: string;
-  title: string;
-  description: string;
-  kind: GalleryKind;
-  status: string;
+  imageUrl: string;
+  alt: string;
+  category?: string;
+  order?: number;
+  kind?: GalleryKind;
 };
 
 export type ShopInfoItem = {
   id: number;
   title: string;
   description: string;
-};
-
-export type AboutCard = {
-  title: string;
-  description: string;
-  tone?: "default" | "pink" | "green";
 };
 
 export type ContactLink = {
@@ -70,12 +75,12 @@ export type SiteContent = {
   };
   hero: {
     note: string;
+    imageUrl?: string;
+    imageAlt?: string;
   };
+  fontVariant: FontVariant;
+  themeVariant: ThemeVariant;
   nav: NavItem[];
-  about: {
-    cards: AboutCard[];
-    pills: string[];
-  };
   contact: {
     whatsappPhone: string;
     instagramUrl: string;
