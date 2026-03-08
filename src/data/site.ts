@@ -31,4 +31,21 @@ export const siteContent: SiteContent = {
     floatingText: "Comprar no WhatsApp",
     floatingInstagramText: "Ver no Instagram",
   },
+  sections: {
+    produtos: {
+      kicker: "Produtos em destaque",
+      title: "Peças autorais da marca",
+      text: "",
+    },
+    catalogo: {
+      kicker: "Catálogo",
+      title: "Todos os produtos da marca",
+      text: "Aqui você encontra todas as peças autorais disponíveis, organizadas por categoria.",
+    },
+    faq: {
+      kicker: "FAQ",
+      title: "Compra, envio e encomendas",
+      text: "Tudo que a pessoa precisa para comprar com segurança e entender o funcionamento da loja.",
+    },
+  },
 };

@@ -86,4 +86,21 @@ export type SiteContent = {
     floatingText: string;
     floatingInstagramText: string;
   };
+  sections: {
+    produtos: {
+      kicker: string;
+      title: string;
+      text: string;
+    };
+    catalogo: {
+      kicker: string;
+      title: string;
+      text: string;
+    };
+    faq: {
+      kicker: string;
+      title: string;
+      text: string;
+    };
+  };
 };

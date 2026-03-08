@@ -43,7 +43,7 @@ export function Hero({ content }: HeroProps) {
             <h1 className="font-logo m-0 text-[clamp(62px,8vw,104px)] font-normal leading-[0.9] text-pink-shock">
               {heroName}
             </h1>
-            <div className="font-ui text-xs font-black uppercase tracking-[0.24em] text-green-mid">
+            <div className="font-ui text-[clamp(14px,1.6vw,20px)] font-black uppercase tracking-[0.2em] text-header-bg max-md:text-[14px] max-md:tracking-[0.12em]">
               {heroSubname}
             </div>
           </div>

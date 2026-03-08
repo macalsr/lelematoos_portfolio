@@ -2,21 +2,18 @@ import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { sectionStyles } from "@/lib/sectionStyles";
-import type { ShopInfoItem } from "@/types/site";
+import type { ShopInfoItem, SiteContent } from "@/types/site";
 
 type ShopInfoSectionProps = {
   items: ShopInfoItem[];
+  heading: SiteContent["sections"]["faq"];
 };
 
-export function ShopInfoSection({ items }: ShopInfoSectionProps) {
+export function ShopInfoSection({ items, heading }: ShopInfoSectionProps) {
   return (
     <section id="faq" className={sectionStyles.base}>
       <Container>
-        <SectionHeading
-          kicker="FAQ"
-          title="Compra, envio e encomendas"
-          text="Tudo que a pessoa precisa para comprar com segurança e entender o funcionamento da loja."
-        />
+        <SectionHeading kicker={heading.kicker} title={heading.title} text={heading.text} />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1`}>
           {items.map((item) => (

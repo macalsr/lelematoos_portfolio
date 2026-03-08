@@ -9,13 +9,14 @@ import { Container } from "@/components/ui/Container";
 import { sectionStyles } from "@/lib/sectionStyles";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { messageProductInterest } from "@/lib/whatsappMessages";
-import type { CategoryItem, ProductCategoryId, ProductItem } from "@/types/site";
+import type { CategoryItem, ProductCategoryId, ProductItem, SiteContent } from "@/types/site";
 
 type ProductsCatalogSectionProps = {
   products: ProductItem[];
   categories: CategoryItem[];
   whatsappPhone: string;
   initialCategory?: string;
+  heading: SiteContent["sections"]["catalogo"];
 };
 
 export function ProductsCatalogSection({
@@ -23,6 +24,7 @@ export function ProductsCatalogSection({
   categories,
   whatsappPhone,
   initialCategory,
+  heading,
 }: ProductsCatalogSectionProps) {
   const [activeCategory, setActiveCategory] = useState<ProductCategoryId | "todas">(() => {
     if (!initialCategory) return "todas";
@@ -45,11 +47,7 @@ export function ProductsCatalogSection({
   return (
     <section id="produtos" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
       <Container>
-        <SectionHeading
-          kicker="Catálogo"
-          title="Todos os produtos da marca"
-          text="Aqui você encontra todas as peças autorais disponíveis, organizadas por categoria."
-        />
+        <SectionHeading kicker={heading.kicker} title={heading.title} text={heading.text} />
 
         <div className="mt-6 flex flex-wrap gap-2 max-md:mt-5">
           <button
@@ -81,12 +79,12 @@ export function ProductsCatalogSection({
             <Card key={product.id} variant="flash">
               <Link
                 href={`/produtos/${product.slug}`}
-                className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px]"
+                className="flex aspect-[4/3] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-md:p-4"
               >
                 <img
                   src={product.imagemPrincipal}
                   alt={product.nome}
-                  className="h-full w-full rounded-xl object-cover"
+                  className="h-full w-full rounded-xl object-contain object-center"
                   loading="lazy"
                 />
               </Link>

@@ -26,8 +26,9 @@ export default async function Home() {
           products={products}
           categories={categories}
           whatsappPhone={content.contact.whatsappPhone}
+          heading={content.sections.produtos}
         />
-        <ShopInfoSection items={faqItems} />
+        <ShopInfoSection items={faqItems} heading={content.sections.faq} />
         <ContactSection content={content} />
       </main>
       <Footer />

@@ -72,7 +72,16 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   fontVariant,
   themeVariant,
   contactFloatingText,
-  contactFloatingInstagramText
+  contactFloatingInstagramText,
+  sectionProductsKicker,
+  sectionProductsTitle,
+  sectionProductsText,
+  sectionCatalogKicker,
+  sectionCatalogTitle,
+  sectionCatalogText,
+  sectionFaqKicker,
+  sectionFaqTitle,
+  sectionFaqText
 }`;
 
 export const faqItemsQuery = groq`*[_type == "faqItem" && archived != true] | order(_createdAt asc){
