@@ -25,7 +25,10 @@ export function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-b-[rgba(25,63,49,0.1)] bg-[rgba(245,239,232,0.95)] backdrop-blur-[10px]">
+    <header
+      className="sticky top-0 z-[80] border-b-2 border-b-[rgba(25,63,49,0.1)] bg-[rgba(245,239,232,0.95)] backdrop-blur-[10px]"
+      style={{ position: "sticky", top: 0, zIndex: 80 }}
+    >
       <Container className="flex min-h-[84px] flex-wrap items-center justify-between gap-6 max-md:min-h-[52px] max-md:gap-2 max-md:py-1">
         <a href="#home" className="flex min-w-0 flex-col gap-1" onClick={closeMenu}>
           <strong className="text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
