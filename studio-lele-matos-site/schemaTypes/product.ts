@@ -99,30 +99,6 @@ export const productType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "visualKind",
-      title: "Estilo visual",
-      type: "string",
-      description: "Usado para manter o estilo visual consistente no site.",
-      fieldset: "siteDisplay",
-      options: {
-        list: [
-          { title: "Rosa", value: "rose" },
-          { title: "Coração", value: "heart" },
-          { title: "Estrela", value: "star" },
-          { title: "Folha", value: "leaf" },
-        ],
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "novelty",
-      title: "Produto novidade",
-      type: "boolean",
-      description: "Marque para destacar este produto como novidade.",
-      fieldset: "siteDisplay",
-      initialValue: false,
-    }),
-    defineField({
       name: "featured",
       title: "Produto em destaque",
       type: "boolean",

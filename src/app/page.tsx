@@ -10,6 +10,8 @@ import { getFaqItems } from "@/lib/faq";
 import { getProducts } from "@/lib/products";
 import { getSiteContent } from "@/lib/siteContent";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const products = await getProducts();
   const categories = await getCategories();

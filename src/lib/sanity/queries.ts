@@ -14,9 +14,6 @@ export const productsQuery = groq`*[_type == "product" && archived != true] | or
   longDescription,
   material,
   size,
-  visualKind,
-  novelty,
-  currentCollection,
   featured,
   available,
   "mainImageUrl": mainImage.asset->url
@@ -36,9 +33,6 @@ export const productBySlugQuery = groq`*[_type == "product" && archived != true 
   longDescription,
   material,
   size,
-  visualKind,
-  novelty,
-  currentCollection,
   featured,
   available,
   "mainImageUrl": mainImage.asset->url

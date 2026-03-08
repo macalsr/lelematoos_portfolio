@@ -1,6 +1,6 @@
-import type { GalleryKind, ProductKind } from "@/types/site";
+import type { GalleryKind } from "@/types/site";
 
-export type TattooIconKind = ProductKind | GalleryKind;
+export type TattooIconKind = GalleryKind;
 
 export function RoseIcon({ className = "" }: { className?: string }) {
   return (
