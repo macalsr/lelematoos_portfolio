@@ -9,9 +9,9 @@ type HeroProps = {
 };
 
 export function Hero({ content }: HeroProps) {
-  const heroName = content.brand.name || mockSiteContent.brand.name;
-  const heroSubname = content.brand.subname || mockSiteContent.brand.subname;
-  const heroNote = content.hero.note || mockSiteContent.hero.note;
+  const heroName = content.brand.name;
+  const heroSubname = content.brand.subname;
+  const heroNote = content.hero.note;
   const heroImageUrl = content.hero.imageUrl || mockSiteContent.hero.imageUrl;
   const heroImageAlt = content.hero.imageAlt || `${heroName} hero`;
 

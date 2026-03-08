@@ -17,7 +17,7 @@ export function ProductCategoriesSection({ products, categories }: ProductCatego
         <SectionHeading
           kicker="Categorias"
           title="O que você encontra"
-          text="Cada categoria carrega a assinatura visual da artista, sem perder a origem no universo tattoo."
+          text=""
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-3`}>
@@ -41,3 +41,4 @@ export function ProductCategoriesSection({ products, categories }: ProductCatego
     </section>
   );
 }
+
