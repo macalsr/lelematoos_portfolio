@@ -1,7 +1,7 @@
 import type { SiteContent } from "@/types/site";
 
-const WHATSAPP_PHONE = "5561999999999";
-const INSTAGRAM_URL = "#";
+const WHATSAPP_PHONE = "5561982371005";
+const INSTAGRAM_URL = "https://www.instagram.com/lelematoos/";
 
 export const siteContent: SiteContent = {
   seo: {
@@ -66,7 +66,7 @@ export const siteContent: SiteContent = {
     actions: [
       {
         label: "WhatsApp para reserva",
-        href: "https://wa.me/5561999999999?text=Oi!%20Quero%20reservar%20um%20flash.",
+        href: "https://wa.me/5561982371005?text=Oi!%20Quero%20reservar%20um%20flash.",
       },
       {
         label: "Instagram com flashes e agenda",
