@@ -12,9 +12,10 @@ export const siteContent: SiteContent = {
   brand: {
     name: "Lele Matoos",
     tagline: "Tattoo · Old School",
-    subname: "Artista visual e tatuadora",
   },
   hero: {
+    title: "Lele Matoos",
+    subtitle: "Artista visual e tatuadora",
     note: "Marca autoral · peças em tiragem especial · universo old school",
   },
   fontVariant: "classic-script",
@@ -48,5 +49,6 @@ export const siteContent: SiteContent = {
     ],
     mainCtaText: "Falar sobre produtos",
     floatingText: "Comprar no WhatsApp",
+    floatingInstagramText: "Ver no Instagram",
   },
 };

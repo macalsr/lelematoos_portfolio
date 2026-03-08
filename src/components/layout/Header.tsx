@@ -24,6 +24,8 @@ export function Header({ content }: HeaderProps) {
   const navItems = content.nav.length > 0 ? content.nav : mockSiteContent.nav;
   const brandName = content.brand.name;
   const brandTagline = content.brand.tagline;
+  const brandLogoImageUrl = content.brand.logoImageUrl;
+  const brandLogoImageAlt = content.brand.logoImageAlt || brandName || "Logo da marca";
   const mobileMenuLinks = navItems.filter((item) => !item.cta);
   const ctaItem = navItems.find((item) => item.cta);
 
@@ -41,9 +43,17 @@ export function Header({ content }: HeaderProps) {
     >
       <Container className="flex min-h-[84px] flex-wrap items-center justify-between gap-6 max-md:min-h-[52px] max-md:gap-2 max-md:py-1">
         <a href={toSectionHref("#home")} className="flex min-w-0 flex-col gap-1" onClick={closeMenu}>
-          <strong className="font-logo text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
-            {brandName}
-          </strong>
+          {brandLogoImageUrl ? (
+            <img
+              src={brandLogoImageUrl}
+              alt={brandLogoImageAlt}
+              className="h-10 w-auto max-w-[220px] object-contain max-md:h-7 max-md:max-w-[150px]"
+            />
+          ) : (
+            <strong className="font-logo text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
+              {brandName}
+            </strong>
+          )}
           <span className="font-ui text-[11px] font-extrabold uppercase tracking-[0.24em] text-muted max-md:hidden">
             {brandTagline}
           </span>

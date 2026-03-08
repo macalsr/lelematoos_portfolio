@@ -66,9 +66,12 @@ export type SiteContent = {
   brand: {
     name: string;
     tagline: string;
-    subname: string;
+    logoImageUrl?: string;
+    logoImageAlt?: string;
   };
   hero: {
+    title: string;
+    subtitle: string;
     note: string;
     imageUrl?: string;
     imageAlt?: string;
@@ -84,5 +87,6 @@ export type SiteContent = {
     actions: ContactLink[];
     mainCtaText: string;
     floatingText: string;
+    floatingInstagramText: string;
   };
 };
