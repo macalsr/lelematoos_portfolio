@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   Bebas_Neue,
   Caveat,
+  Fjalla_One,
   Imperial_Script,
   Lora,
   Nunito,
@@ -49,6 +50,11 @@ const caveat = Caveat({
   variable: "--font-caveat",
   weight: ["400", "600", "700"],
 });
+const fjallaOne = Fjalla_One({
+  subsets: ["latin"],
+  variable: "--font-fjalla",
+  weight: "400",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSiteSeo();
@@ -92,7 +98,7 @@ export default async function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${imperialScript.variable} ${oswald.variable} ${bebasNeue.variable} ${playfairDisplay.variable} ${lora.variable} ${nunito.variable} ${caveat.variable} ${variantClass} bg-bg text-green-dark font-body`}
+        className={`${imperialScript.variable} ${oswald.variable} ${bebasNeue.variable} ${playfairDisplay.variable} ${lora.variable} ${nunito.variable} ${caveat.variable} ${fjallaOne.variable} ${variantClass} bg-bg text-green-dark font-body`}
         style={themeVariables as React.CSSProperties}
       >
         <div className="h-2 w-full bg-button-primary" />

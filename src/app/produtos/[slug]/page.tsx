@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { getProductBySlug, getProductSlugs } from "@/lib/products";
+import { getProductBySlug } from "@/lib/products";
 import { getSiteContent } from "@/lib/siteContent";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { messageProductInterest, messageProductQuestion } from "@/lib/whatsappMessages";
@@ -16,10 +16,7 @@ type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams() {
-  const slugs = await getProductSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const content = await getSiteContent();
@@ -73,11 +70,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <div className="grid grid-cols-[1fr_1fr] gap-6 max-lg:grid-cols-1">
               <Card variant="flash">
-                <div className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px]">
+                <div className="flex aspect-[4/3] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-md:p-4">
                   <img
                     src={product.imagemPrincipal}
                     alt={product.nome}
-                    className="h-full w-full rounded-xl object-cover"
+                    className="h-full w-full rounded-xl object-contain object-center"
                   />
                 </div>
 
@@ -94,6 +91,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               <Card variant="process">
                 <h2 className="mb-4 text-2xl font-black uppercase text-green-dark">Detalhes do produto</h2>
+                <p className="mb-4 text-lg font-black uppercase leading-[1.1] text-pink-dark">{product.nome}</p>
                 <div className="grid gap-3 text-[15px] text-muted">
                   <p>
                     <strong className="text-green-dark">Preço:</strong> {product.preco}

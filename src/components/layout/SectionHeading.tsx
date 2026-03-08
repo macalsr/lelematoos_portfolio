@@ -10,10 +10,10 @@ type SectionHeadingProps = {
 export function SectionHeading({ kicker, title, text, children }: SectionHeadingProps) {
   return (
     <>
-      <span className="font-ui mb-3 inline-block text-xs font-black uppercase tracking-[0.25em] text-pink-dark">
+      <span className="font-ui mb-4 inline-block text-xs font-black uppercase tracking-[0.25em] text-pink-dark max-md:mb-3">
         {kicker}
       </span>
-      <h2 className="font-heading mb-[14px] text-[clamp(34px,5vw,58px)] font-black uppercase leading-[0.92] text-green-dark">
+      <h2 className="font-heading mb-5 text-[clamp(34px,5vw,58px)] font-black uppercase leading-[0.92] text-green-dark max-md:mb-4">
         {title}
       </h2>
       {text.trim() ? (

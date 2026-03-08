@@ -10,6 +10,8 @@ export type ThemeVariant = (typeof THEME_VARIANTS)[number];
 export type ThemeTokens = {
   background: string;
   surface: string;
+  headerBackground: string;
+  headerText: string;
   primary: string;
   secondary: string;
   accent: string;
@@ -31,6 +33,8 @@ export const THEME_TOKENS: Record<ThemeVariant, ThemeTokens> = {
     // Theme 1: rosa queimado + verde escuro + bege claro + oliva claro
     background: "244 237 221",
     surface: "252 247 238",
+    headerBackground: "22 82 56",
+    headerText: "252 247 238",
     primary: "22 82 56",
     secondary: "62 106 78",
     accent: "143 58 70",
@@ -48,6 +52,8 @@ export const THEME_TOKENS: Record<ThemeVariant, ThemeTokens> = {
     // Theme 2: doce retro colorido
     background: "247 234 203",
     surface: "255 245 224",
+    headerBackground: "73 64 56",
+    headerText: "255 245 224",
     primary: "227 104 136",
     secondary: "102 152 204",
     accent: "240 140 33",
@@ -65,34 +71,38 @@ export const THEME_TOKENS: Record<ThemeVariant, ThemeTokens> = {
     // Theme 3: vinho e rosa vibrante
     background: "248 224 220",
     surface: "255 239 234",
-    primary: "122 16 34",
+    headerBackground: "138 72 94",
+    headerText: "255 239 234",
+    primary: "138 72 94",
     secondary: "33 138 10",
     accent: "255 128 170",
-    text: "88 23 35",
-    muted: "128 82 77",
-    border: "132 37 53",
-    buttonPrimary: "122 16 34",
+    text: "108 58 76",
+    muted: "138 103 117",
+    border: "148 84 104",
+    buttonPrimary: "138 72 94",
     buttonSecondary: "202 226 173",
     surfaceAlt: "236 244 214",
     accentSoft: "255 210 223",
-    accentStrong: "169 42 71",
+    accentStrong: "161 92 118",
     accentVivid: "255 128 170",
   },
   "cream-pink": {
     // Theme 4: mistico vibrante
     background: "24 20 24",
     surface: "39 31 36",
+    headerBackground: "24 20 24",
+    headerText: "245 221 199",
     primary: "245 221 199",
     secondary: "248 126 58",
     accent: "245 176 196",
     text: "245 221 199",
     muted: "206 181 164",
-    border: "157 108 120",
-    buttonPrimary: "111 23 45",
+    border: "173 126 146",
+    buttonPrimary: "161 92 118",
     buttonSecondary: "248 126 58",
     surfaceAlt: "56 46 53",
-    accentSoft: "88 58 72",
-    accentStrong: "111 23 45",
+    accentSoft: "122 84 102",
+    accentStrong: "161 92 118",
     accentVivid: "248 126 58",
   },
 };
@@ -113,6 +123,8 @@ export function getThemeCssVariables(variant: ThemeVariant): Record<string, stri
   return {
     "--color-bg": theme.background,
     "--color-surface": theme.surface,
+    "--color-header-bg": theme.headerBackground,
+    "--color-header-text": theme.headerText,
     "--color-primary": theme.primary,
     "--color-secondary": theme.secondary,
     "--color-accent": theme.accent,

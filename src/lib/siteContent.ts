@@ -26,6 +26,15 @@ type SanitySiteSettings = {
   themeVariant?: string;
   contactFloatingText?: string;
   contactFloatingInstagramText?: string;
+  sectionProductsKicker?: string;
+  sectionProductsTitle?: string;
+  sectionProductsText?: string;
+  sectionCatalogKicker?: string;
+  sectionCatalogTitle?: string;
+  sectionCatalogText?: string;
+  sectionFaqKicker?: string;
+  sectionFaqTitle?: string;
+  sectionFaqText?: string;
 };
 
 function cloneSiteContent(base: SiteContent): SiteContent {
@@ -36,6 +45,11 @@ function cloneSiteContent(base: SiteContent): SiteContent {
     nav: [...base.nav],
     contact: {
       ...base.contact,
+    },
+    sections: {
+      produtos: { ...base.sections.produtos },
+      catalogo: { ...base.sections.catalogo },
+      faq: { ...base.sections.faq },
     },
   };
 }
@@ -53,6 +67,11 @@ function createEmptySiteContent(): SiteContent {
       instagramUrl: "",
       floatingText: "",
       floatingInstagramText: "",
+    },
+    sections: {
+      produtos: { ...mockSiteContent.sections.produtos },
+      catalogo: { ...mockSiteContent.sections.catalogo },
+      faq: { ...mockSiteContent.sections.faq },
     },
   };
 }
@@ -112,6 +131,15 @@ export async function getSiteContent() {
     if (settings.contactFloatingInstagramText?.trim()) {
       content.contact.floatingInstagramText = settings.contactFloatingInstagramText.trim();
     }
+    if (settings.sectionProductsKicker?.trim()) content.sections.produtos.kicker = settings.sectionProductsKicker.trim();
+    if (settings.sectionProductsTitle?.trim()) content.sections.produtos.title = settings.sectionProductsTitle.trim();
+    if (typeof settings.sectionProductsText === "string") content.sections.produtos.text = settings.sectionProductsText.trim();
+    if (settings.sectionCatalogKicker?.trim()) content.sections.catalogo.kicker = settings.sectionCatalogKicker.trim();
+    if (settings.sectionCatalogTitle?.trim()) content.sections.catalogo.title = settings.sectionCatalogTitle.trim();
+    if (typeof settings.sectionCatalogText === "string") content.sections.catalogo.text = settings.sectionCatalogText.trim();
+    if (settings.sectionFaqKicker?.trim()) content.sections.faq.kicker = settings.sectionFaqKicker.trim();
+    if (settings.sectionFaqTitle?.trim()) content.sections.faq.title = settings.sectionFaqTitle.trim();
+    if (typeof settings.sectionFaqText === "string") content.sections.faq.text = settings.sectionFaqText.trim();
 
     return content;
   } catch {

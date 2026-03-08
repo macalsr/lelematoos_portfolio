@@ -7,6 +7,8 @@ const config: Config = {
       colors: {
         bg: "rgb(var(--color-bg) / <alpha-value>)",
         surface: "rgb(var(--color-surface) / <alpha-value>)",
+        "header-bg": "rgb(var(--color-header-bg) / <alpha-value>)",
+        "header-text": "rgb(var(--color-header-text) / <alpha-value>)",
         "green-dark": "rgb(var(--color-primary) / <alpha-value>)",
         "green-mid": "rgb(var(--color-secondary) / <alpha-value>)",
         "green-soft": "rgb(var(--color-button-secondary) / <alpha-value>)",

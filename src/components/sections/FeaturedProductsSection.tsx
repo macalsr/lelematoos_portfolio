@@ -9,15 +9,16 @@ import { Container } from "@/components/ui/Container";
 import { sectionStyles } from "@/lib/sectionStyles";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { messageProductInterest } from "@/lib/whatsappMessages";
-import type { CategoryItem, ProductCategoryId, ProductItem } from "@/types/site";
+import type { CategoryItem, ProductCategoryId, ProductItem, SiteContent } from "@/types/site";
 
 type FeaturedProductsSectionProps = {
   products: ProductItem[];
   categories: CategoryItem[];
   whatsappPhone: string;
+  heading: SiteContent["sections"]["produtos"];
 };
 
-export function FeaturedProductsSection({ products, categories, whatsappPhone }: FeaturedProductsSectionProps) {
+export function FeaturedProductsSection({ products, categories, whatsappPhone, heading }: FeaturedProductsSectionProps) {
   const [activeCategory, setActiveCategory] = useState<ProductCategoryId | "todas">("todas");
   const categoryNames = useMemo(
     () => new Map(categories.map((category) => [category.id, category.nome])),
@@ -41,9 +42,9 @@ export function FeaturedProductsSection({ products, categories, whatsappPhone }:
     <section id="produtos" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
       <Container>
         <SectionHeading
-          kicker="Produtos em destaque"
-          title="Peças autorais da marca"
-          text=""
+          kicker={heading.kicker}
+          title={heading.title}
+          text={heading.text}
         />
 
         <div className="mt-6 flex flex-wrap gap-2 max-md:mt-5">
@@ -76,12 +77,12 @@ export function FeaturedProductsSection({ products, categories, whatsappPhone }:
             <Card key={product.id} variant="flash">
               <Link
                 href={`/produtos/${product.slug}`}
-                className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-lg:aspect-[4/3] max-md:aspect-square"
+                className="flex aspect-[4/3] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-md:p-4"
               >
                 <img
                   src={product.imagemPrincipal}
                   alt={product.nome}
-                  className="h-full w-full rounded-xl object-cover"
+                  className="h-full w-full rounded-xl object-contain object-center"
                   loading="lazy"
                 />
               </Link>
