@@ -14,8 +14,8 @@ export function ContactSection() {
         <Container>
           <SectionHeading
             kicker="Contato"
-            title="Reserva, agenda e dúvidas"
-            text="O objetivo aqui é reduzir atrito. O site apresenta e o WhatsApp fecha."
+            title="Compras, encomendas e dúvidas"
+            text="Fale direto com a marca para comprar produtos, acompanhar lançamentos e tirar dúvidas sobre envio."
           />
 
           <div className={`${sectionStyles.contentGridTop} grid grid-cols-[1.1fr_0.9fr] items-center gap-6 rounded-[30px] border-[4px] border-green-dark bg-pink-soft p-[34px] shadow-[8px_8px_0_#193f31] max-lg:grid-cols-1 max-md:gap-5 max-md:p-5`}>
@@ -51,7 +51,7 @@ export function ContactSection() {
               )}
 
               <Button
-                href={buildWhatsAppUrl(PHONE, "Oi! Quero agendar uma tattoo.")}
+                href={buildWhatsAppUrl(PHONE, "Oi! Quero comprar produtos da marca Lele Matoos.")}
                 variant="contactMain"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -64,7 +64,7 @@ export function ContactSection() {
       </section>
 
       <Button
-        href={buildWhatsAppUrl(PHONE, "Oi! Tenho interesse em reservar um flash.")}
+        href={buildWhatsAppUrl(PHONE, "Oi! Quero comprar produtos da marca Lele Matoos.")}
         variant="floating"
         target="_blank"
         rel="noopener noreferrer"

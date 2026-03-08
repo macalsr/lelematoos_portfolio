@@ -1,41 +1,49 @@
-﻿export type NavItem = {
+export type NavItem = {
   label: string;
   href: string;
   cta?: boolean;
 };
 
-export type QuickInfoItem = {
-  title: string;
-  subtitle: string;
-};
+export type ProductKind = "rose" | "heart" | "star" | "leaf";
 
-export type FlashKind = "rose" | "heart" | "star";
-
-export type FlashItem = {
+export type ProductItem = {
   id: string;
   tag: string;
   title: string;
   description: string;
   price: string;
-  signal: string;
   primaryMessage: string;
   secondaryMessage: string;
-  kind: FlashKind;
+  kind: ProductKind;
 };
 
-export type ProcessStep = {
-  id: number;
+export type CategoryItem = {
+  id: string;
   title: string;
-  description: string;
+  subtitle: string;
 };
 
-export type PortfolioKind = "heart" | "star" | "rose" | "leaf";
+export type GalleryKind = "heart" | "star" | "rose" | "leaf";
 
-export type PortfolioItem = {
+export type GalleryItem = {
   id: string;
   title: string;
   description: string;
-  kind: PortfolioKind;
+  kind: GalleryKind;
+};
+
+export type CollectionItem = {
+  id: string;
+  title: string;
+  description: string;
+  kind: GalleryKind;
+  status: string;
+};
+
+export type ShopInfoItem = {
+  id: number;
+  title: string;
+  description: string;
 };
 
 export type AboutCard = {
@@ -63,7 +71,6 @@ export type SiteContent = {
   hero: {
     note: string;
   };
-  quickInfo: QuickInfoItem[];
   nav: NavItem[];
   about: {
     cards: AboutCard[];

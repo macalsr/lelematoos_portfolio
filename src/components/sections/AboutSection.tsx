@@ -6,14 +6,8 @@ import { siteContent } from "@/data/site";
 import { sectionStyles } from "@/lib/sectionStyles";
 
 function getToneClass(tone: "default" | "pink" | "green" | undefined): string {
-  if (tone === "pink") {
-    return "bg-pink-soft";
-  }
-
-  if (tone === "green") {
-    return "bg-green-soft";
-  }
-
+  if (tone === "pink") return "bg-pink-soft";
+  if (tone === "green") return "bg-green-soft";
   return "bg-surface";
 }
 
@@ -22,18 +16,16 @@ export function AboutSection() {
     <section id="sobre" className={sectionStyles.base}>
       <Container>
         <SectionHeading
-          kicker="Sobre"
-          title="Old school com personalidade"
-          text="Aqui a intenção é construir confiança sem transformar a home em um documentário. Texto curto, identidade clara e processo simples."
+          kicker="Sobre a artista"
+          title="Tatuagem como origem da marca"
+          text="A Lele Matoos é tatuadora e artista visual. A loja nasce desse repertório old school e transforma essa linguagem em peças autorais."
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-[0.95fr_1.05fr] items-start gap-7 max-lg:grid-cols-1 max-md:gap-5`}>
           <div className="grid gap-4">
             {siteContent.about.cards.map((card) => (
               <Card key={card.title} variant="about" className={getToneClass(card.tone)}>
-                <h3 className="mb-2.5 text-2xl font-black uppercase leading-none text-green-dark">
-                  {card.title}
-                </h3>
+                <h3 className="mb-2.5 text-2xl font-black uppercase leading-none text-green-dark">{card.title}</h3>
                 <p className="m-0 leading-[1.8] text-muted">{card.description}</p>
               </Card>
             ))}

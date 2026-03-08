@@ -6,20 +6,15 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-const mobileMenuLinks = [
-  { label: "Flashes", href: "#flash" },
-  { label: "Como funciona", href: "#como-funciona" },
-  { label: "Portfólio", href: "#portfolio" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Contato", href: "#contato" },
-];
+const mobileMenuLinks = siteContent.nav.filter((item) => !item.cta);
+const ctaItem = siteContent.nav.find((item) => item.cta);
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const agendarHref = buildWhatsAppUrl(
     siteContent.contact.whatsappPhone,
-    "Oi! Quero agendar uma tattoo.",
+    "Oi! Quero falar sobre produtos da marca Lele Matoos.",
   );
 
   const closeMenu = () => setIsOpen(false);
@@ -88,13 +83,11 @@ export function Header() {
               ))}
 
               <a
-                href={agendarHref}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={ctaItem?.href ?? agendarHref}
                 onClick={closeMenu}
                 className="rounded-2xl border-[4px] border-green-dark bg-green-dark px-3.5 py-2.5 text-center text-xs font-black uppercase tracking-[0.1em] text-white shadow-[4px_4px_0_#cb5c88]"
               >
-                Agendar
+                {ctaItem?.label ?? "Agendar"}
               </a>
             </nav>
           </Container>

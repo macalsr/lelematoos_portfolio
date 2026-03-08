@@ -1,6 +1,6 @@
-import type { FlashKind, PortfolioKind } from "@/types/site";
+import type { GalleryKind, ProductKind } from "@/types/site";
 
-export type TattooIconKind = FlashKind | PortfolioKind;
+export type TattooIconKind = ProductKind | GalleryKind;
 
 export function RoseIcon({ className = "" }: { className?: string }) {
   return (

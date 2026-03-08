@@ -2,21 +2,21 @@ import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { TattooIcon } from "@/components/ui/TattooIcons";
-import { portfolioItems } from "@/data/portfolio";
+import { galleryItems } from "@/data/gallery";
 import { sectionStyles } from "@/lib/sectionStyles";
 
-export function PortfolioSection() {
+export function GallerySection() {
   return (
-    <section id="portfolio" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
+    <section id="galeria" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
       <Container>
         <SectionHeading
-          kicker="Portfólio"
-          title="Alguns trabalhos recentes"
-          text="Aqui entram tattoos reais e flashes já executados. Menos discurso, mais imagem e assinatura visual."
+          kicker="Galeria"
+          title="Universo visual da marca"
+          text="Referências visuais, estudos e peças que conectam a origem tattoo com os produtos autorais."
         />
 
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4`}>
-          {portfolioItems.map((item) => (
+          {galleryItems.map((item) => (
             <Card key={item.id} variant="portfolio">
               <div className="flex aspect-[1/1.1] items-center justify-center border-b-[4px] border-b-green-dark bg-[linear-gradient(135deg,#f3d4df,#dcebcf)] p-[18px]">
                 <TattooIcon

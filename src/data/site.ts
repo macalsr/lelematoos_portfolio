@@ -5,79 +5,76 @@ const INSTAGRAM_URL = "https://www.instagram.com/lelematoos/";
 
 export const siteContent: SiteContent = {
   seo: {
-    title: "Lele Matoos Tattoo",
+    title: "Lele Matoos - Marca Autoral",
     description:
-      "Flashes old school, reservas por sinal e agendamentos da tatuadora Lele Matoos.",
+      "Produtos autorais da Lele Matoos: bandeiras, prints, ecobags e coleções inspiradas no universo old school.",
   },
   brand: {
     name: "Lele Matoos",
-    tagline: "Tattoo Studio · Old School",
-    subname: "Old school tattoo",
+    tagline: "Tattoo · Old School",
+    subname: "Artista visual e tatuadora",
   },
   hero: {
-    note: "Reserva simples · sinal via WhatsApp · atendimento com hora marcada",
+    note: "Marca autoral · peças em tiragem especial · universo old school",
   },
-  quickInfo: [
-    { title: "Flash", subtitle: "Pronto para reservar" },
-    { title: "Sinal", subtitle: "Confirma sua vaga" },
-    { title: "Custom", subtitle: "Projeto sob consulta" },
-    { title: "Agenda", subtitle: "Sessão com horário" },
-  ],
   nav: [
-    { label: "Flashes", href: "#flash" },
-    { label: "Como funciona", href: "#como-funciona" },
-    { label: "Portfólio", href: "#portfolio" },
+    { label: "Produtos", href: "#produtos" },
+    { label: "Categorias", href: "#categorias" },
     { label: "Sobre", href: "#sobre" },
+    { label: "Galeria", href: "#galeria" },
+    { label: "Coleção", href: "#colecao" },
+    { label: "FAQ", href: "#faq" },
+    { label: "Contato", href: "#contato" },
     { label: "Agendar", href: "#contato", cta: true },
   ],
   about: {
     cards: [
       {
-        title: "Traço firme",
+        title: "Origem no tattoo",
         description:
-          "Desenho com leitura clara, contraste forte e acabamento tradicional.",
+          "A marca nasce da estética old school da Lele: traço firme, símbolos clássicos e leitura forte.",
       },
       {
-        title: "Linguagem retrô",
+        title: "Peças autorais",
         description:
-          "Visual feminino e vintage, mantendo o peso clássico do old school.",
+          "Bandeiras, prints, ecobags e itens de coleção criados a partir do universo visual da artista.",
         tone: "pink",
       },
       {
-        title: "Atendimento direto",
+        title: "Lançamentos curados",
         description:
-          "Orçamento, reserva e alinhamento do projeto feitos pelo WhatsApp.",
+          "As coleções entram em ciclos, com tiragens limitadas e foco em identidade artística.",
         tone: "green",
       },
     ],
     pills: [
-      "Atendimento com hora marcada",
-      "Flashes disponíveis para reserva",
-      "Projetos autorais sob consulta",
-      "Sinal abatido no valor final",
+      "Marca autoral de artista tatuadora",
+      "Coleções com linguagem old school",
+      "Peças para decorar, vestir e colecionar",
+      "Encomendas e dúvidas por WhatsApp",
     ],
   },
   contact: {
     whatsappPhone: WHATSAPP_PHONE,
     instagramUrl: INSTAGRAM_URL,
-    cityTitle: "Atendimento em Brasília",
+    cityTitle: "Atendimento online para todo Brasil",
     description:
-      "Chame para reservar um flash, pagar o sinal, pedir orçamento ou conversar sobre tattoo personalizada.",
+      "Chame para compras, encomendas, dúvidas de tamanho, frete e próximos lançamentos da marca.",
     actions: [
       {
-        label: "WhatsApp para reserva",
-        href: "https://wa.me/5561982371005?text=Oi!%20Quero%20reservar%20um%20flash.",
+        label: "WhatsApp para comprar",
+        href: "https://wa.me/5561982371005?text=Oi!%20Quero%20comprar%20um%20produto%20da%20marca.",
       },
       {
-        label: "Instagram com flashes e agenda",
+        label: "Instagram com novidades",
         href: INSTAGRAM_URL,
       },
       {
-        label: "Sinal via WhatsApp · atendimento marcado",
+        label: "Encomendas e tiragens especiais",
         messageOnly: true,
       },
     ],
-    mainCtaText: "Chamar no WhatsApp",
-    floatingText: "Reservar no WhatsApp",
+    mainCtaText: "Falar sobre produtos",
+    floatingText: "Comprar no WhatsApp",
   },
 };

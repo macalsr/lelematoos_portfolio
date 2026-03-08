@@ -1,7 +1,6 @@
 import { siteContent } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { RoseIcon } from "@/components/ui/TattooIcons";
-import { QuickInfo } from "@/components/sections/QuickInfo";
 import { sectionStyles } from "@/lib/sectionStyles";
 
 export function Hero() {
@@ -26,10 +25,6 @@ export function Hero() {
             {siteContent.hero.note}
           </p>
         </div>
-      </Container>
-
-      <Container className={sectionStyles.quickBarTop}>
-        <QuickInfo items={siteContent.quickInfo} />
       </Container>
     </section>
   );

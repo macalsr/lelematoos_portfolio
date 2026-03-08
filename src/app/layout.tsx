@@ -1,5 +1,6 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Imperial_Script } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { siteContent } from "@/data/site";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${imperialScript.variable} bg-bg text-green-dark`}>
         <div className="h-2 w-full bg-green-dark" />
         {children}
+        <Analytics />
       </body>
     </html>
   );
