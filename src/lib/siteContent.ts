@@ -12,6 +12,9 @@ type SanitySiteSettings = {
   };
   whatsapp?: string;
   instagram?: string;
+  headerTitle?: string;
+  headerLogoUrl?: string;
+  headerLogoAlt?: string;
   heroTitle?: string;
   heroSubtitle?: string;
   heroNote?: string;
@@ -29,6 +32,7 @@ type SanitySiteSettings = {
   }>;
   contactMainCtaText?: string;
   contactFloatingText?: string;
+  contactFloatingInstagramText?: string;
 };
 
 function cloneSiteContent(base: SiteContent): SiteContent {
@@ -47,8 +51,8 @@ function cloneSiteContent(base: SiteContent): SiteContent {
 function createEmptySiteContent(): SiteContent {
   return {
     seo: { title: "", description: "" },
-    brand: { name: "", tagline: "", subname: "" },
-    hero: { note: "", imageUrl: undefined, imageAlt: undefined },
+    brand: { name: "", tagline: "", logoImageUrl: undefined, logoImageAlt: undefined },
+    hero: { title: "", subtitle: "", note: "", imageUrl: undefined, imageAlt: undefined },
     fontVariant: mockSiteContent.fontVariant,
     themeVariant: mockSiteContent.themeVariant,
     nav: [...mockSiteContent.nav],
@@ -60,6 +64,7 @@ function createEmptySiteContent(): SiteContent {
       actions: [],
       mainCtaText: "",
       floatingText: "",
+      floatingInstagramText: "",
     },
   };
 }
@@ -87,8 +92,11 @@ export async function getSiteContent() {
     if (settings.seo?.description?.trim()) content.seo.description = settings.seo.description.trim();
     if (whatsappPhone) content.contact.whatsappPhone = whatsappPhone;
     if (instagramUrl) content.contact.instagramUrl = instagramUrl;
-    if (settings.heroTitle?.trim()) content.brand.name = settings.heroTitle.trim();
-    if (settings.heroSubtitle?.trim()) content.brand.subname = settings.heroSubtitle.trim();
+    if (settings.headerTitle?.trim()) content.brand.name = settings.headerTitle.trim();
+    if (settings.headerLogoUrl?.trim()) content.brand.logoImageUrl = settings.headerLogoUrl.trim();
+    if (settings.headerLogoAlt?.trim()) content.brand.logoImageAlt = settings.headerLogoAlt.trim();
+    if (settings.heroTitle?.trim()) content.hero.title = settings.heroTitle.trim();
+    if (settings.heroSubtitle?.trim()) content.hero.subtitle = settings.heroSubtitle.trim();
     if (settings.heroNote?.trim()) content.hero.note = settings.heroNote.trim();
     if (settings.heroImageUrl?.trim()) content.hero.imageUrl = settings.heroImageUrl.trim();
     if (settings.heroImageAlt?.trim()) content.hero.imageAlt = settings.heroImageAlt.trim();
@@ -99,6 +107,9 @@ export async function getSiteContent() {
     if (settings.contactDescription?.trim()) content.contact.description = settings.contactDescription.trim();
     if (settings.contactMainCtaText?.trim()) content.contact.mainCtaText = settings.contactMainCtaText.trim();
     if (settings.contactFloatingText?.trim()) content.contact.floatingText = settings.contactFloatingText.trim();
+    if (settings.contactFloatingInstagramText?.trim()) {
+      content.contact.floatingInstagramText = settings.contactFloatingInstagramText.trim();
+    }
 
     if (settings.contactActions?.length) {
       content.contact.actions = settings.contactActions

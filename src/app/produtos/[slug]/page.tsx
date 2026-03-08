@@ -32,8 +32,10 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
+  const brandName = content.brand.name?.trim();
+
   return {
-    title: `${product.nome} | ${content.brand.name}`,
+    title: brandName ? `${product.nome} | ${brandName}` : product.nome,
     description: product.descricaoCurta,
   };
 }

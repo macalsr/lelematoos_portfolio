@@ -59,6 +59,9 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   "ogImageAlt": coalesce(ogImage.alt, seoTitle, seo.title, "Lele Matoos"),
   whatsapp,
   instagram,
+  headerTitle,
+  "headerLogoUrl": headerLogo.asset->url,
+  "headerLogoAlt": coalesce(headerLogo.alt, headerTitle, "Logo da marca"),
   heroTitle,
   heroSubtitle,
   heroNote,
@@ -75,7 +78,8 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
     messageOnly
   },
   contactMainCtaText,
-  contactFloatingText
+  contactFloatingText,
+  contactFloatingInstagramText
 }`;
 
 export const faqItemsQuery = groq`*[_type == "faqItem" && archived != true] | order(_createdAt asc){

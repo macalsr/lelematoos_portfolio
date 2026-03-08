@@ -65,6 +65,31 @@ export const siteSettingsType = defineType({
       ],
     }),
     defineField({
+      name: "headerTitle",
+      title: "Título principal do header (texto)",
+      type: "string",
+      fieldset: "brand",
+      description:
+        "Texto principal do topo do site. Use quando não quiser usar imagem como logo.",
+    }),
+    defineField({
+      name: "headerLogo",
+      title: "Logo do header (imagem opcional)",
+      type: "image",
+      fieldset: "brand",
+      description:
+        "Se enviar uma imagem, ela será usada no lugar do texto no título principal do header.",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo da logo",
+          type: "string",
+          description: "Descrição da logo para acessibilidade.",
+        }),
+      ],
+    }),
+    defineField({
       name: "heroTitle",
       title: "Título principal (hero)",
       type: "string",
@@ -223,6 +248,13 @@ export const siteSettingsType = defineType({
       type: "string",
       fieldset: "contact",
       description: "Texto do botão flutuante de WhatsApp.",
+    }),
+    defineField({
+      name: "contactFloatingInstagramText",
+      title: "Texto do botão flutuante do Instagram",
+      type: "string",
+      fieldset: "contact",
+      description: "Texto do botão flutuante que leva para o Instagram.",
     }),
   ],
   preview: {
