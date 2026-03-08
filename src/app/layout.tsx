@@ -56,6 +56,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: seo.title,
     description: seo.description,
+    icons: seo.faviconUrl
+      ? {
+          icon: [{ url: seo.faviconUrl }],
+          shortcut: [{ url: seo.faviconUrl }],
+          apple: [{ url: seo.faviconUrl }],
+        }
+      : undefined,
     openGraph: seo.ogImageUrl
       ? {
           title: seo.title,

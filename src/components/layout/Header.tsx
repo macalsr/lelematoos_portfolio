@@ -23,6 +23,7 @@ export function Header({ content }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const navItems = content.nav.length > 0 ? content.nav : mockSiteContent.nav;
   const brandName = content.brand.name;
+  const brandDisplayName = brandName || mockSiteContent.brand.name;
   const brandTagline = content.brand.tagline;
   const brandLogoImageUrl = content.brand.logoImageUrl;
   const brandLogoImageAlt = content.brand.logoImageAlt || brandName || "Logo da marca";
@@ -38,22 +39,26 @@ export function Header({ content }: HeaderProps) {
 
   return (
     <header
-      className="sticky top-0 z-[80] border-b-2 border-b-[rgba(25,63,49,0.1)] bg-[rgba(245,239,232,0.95)] backdrop-blur-[10px]"
+      className="sticky top-0 z-[80] border-b border-b-green-dark/15 bg-bg/95 backdrop-blur-[10px]"
       style={{ position: "sticky", top: 0, zIndex: 80 }}
     >
       <Container className="flex min-h-[84px] flex-wrap items-center justify-between gap-6 max-md:min-h-[52px] max-md:gap-2 max-md:py-1">
         <a href={toSectionHref("#home")} className="flex min-w-0 flex-col gap-1" onClick={closeMenu}>
-          {brandLogoImageUrl ? (
-            <img
-              src={brandLogoImageUrl}
-              alt={brandLogoImageAlt}
-              className="h-10 w-auto max-w-[220px] object-contain max-md:h-7 max-md:max-w-[150px]"
-            />
-          ) : (
-            <strong className="font-logo text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
-              {brandName}
-            </strong>
-          )}
+          <div className="flex min-w-0 items-center gap-2">
+            {brandLogoImageUrl ? (
+              <img
+                src={brandLogoImageUrl}
+                alt={brandLogoImageAlt}
+                className="h-10 w-auto max-w-[220px] shrink-0 object-contain max-md:h-7 max-md:max-w-[150px]"
+              />
+            ) : null}
+
+            {brandDisplayName ? (
+              <strong className="font-logo truncate text-[22px] font-black uppercase tracking-[0.18em] text-green-dark max-md:text-[15px] max-md:tracking-[0.09em] max-[380px]:text-[14px]">
+                {brandDisplayName}
+              </strong>
+            ) : null}
+          </div>
           <span className="font-ui text-[11px] font-extrabold uppercase tracking-[0.24em] text-muted max-md:hidden">
             {brandTagline}
           </span>
@@ -92,7 +97,7 @@ export function Header({ content }: HeaderProps) {
       {isOpen ? (
         <div
           id="mobile-menu"
-          className="hidden max-h-[75vh] overflow-y-auto border-t-2 border-t-[rgba(25,63,49,0.1)] bg-bg/95 px-0 pb-2.5 pt-1 max-md:block"
+          className="hidden max-h-[75vh] overflow-y-auto border-t border-t-green-dark/15 bg-bg/95 px-0 pb-2.5 pt-1 max-md:block"
         >
           <Container>
             <nav className="grid gap-1.5">

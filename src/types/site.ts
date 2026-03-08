@@ -73,6 +73,7 @@ export type SiteContent = {
     title: string;
     subtitle: string;
     note: string;
+    imageSize: "small" | "medium" | "large";
     imageUrl?: string;
     imageAlt?: string;
   };
@@ -82,10 +83,6 @@ export type SiteContent = {
   contact: {
     whatsappPhone: string;
     instagramUrl: string;
-    cityTitle: string;
-    description: string;
-    actions: ContactLink[];
-    mainCtaText: string;
     floatingText: string;
     floatingInstagramText: string;
   };

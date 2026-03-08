@@ -76,7 +76,7 @@ export function FeaturedProductsSection({ products, categories, whatsappPhone }:
             <Card key={product.id} variant="flash">
               <Link
                 href={`/produtos/${product.slug}`}
-                className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,#f6d5df,#f8e6ec_42%,#dcebcf)] p-[22px] max-lg:aspect-[4/3] max-md:aspect-square"
+                className="flex aspect-square items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-lg:aspect-[4/3] max-md:aspect-square"
               >
                 <img
                   src={product.imagemPrincipal}
