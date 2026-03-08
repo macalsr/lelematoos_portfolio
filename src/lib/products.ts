@@ -5,7 +5,7 @@ import {
   fetchSanityProducts,
 } from "@/lib/sanity/fetchers";
 import { shouldUseLocalFallback } from "@/lib/sanity/config";
-import type { ProductCategoryId, ProductItem, ProductKind } from "@/types/site";
+import type { ProductCategoryId, ProductItem } from "@/types/site";
 
 type SanityCategoryRef = {
   slug?: string;
@@ -22,9 +22,6 @@ type SanityProduct = {
   longDescription?: string;
   material?: string;
   size?: string;
-  visualKind?: ProductKind;
-  novelty?: boolean;
-  currentCollection?: boolean;
   featured?: boolean;
   available?: boolean;
   mainImageUrl?: string;
@@ -51,7 +48,6 @@ function mapSanityProductToFrontend(product: SanityProduct): ProductItem | null 
     !product.longDescription ||
     !product.material ||
     !product.size ||
-    !product.visualKind ||
     !product.mainImageUrl
   ) {
     return null;
@@ -68,15 +64,12 @@ function mapSanityProductToFrontend(product: SanityProduct): ProductItem | null 
     imagemPrincipal: product.mainImageUrl,
     descricaoCurta: product.shortDescription,
     destaque: Boolean(product.featured),
-    novidade: Boolean(product.novelty),
-    colecaoAtual: Boolean(product.currentCollection),
     disponivel: product.available !== false,
     descricaoLonga: product.longDescription,
     material: product.material,
     tamanho: product.size,
     primaryMessage: `Oi! Vim pelo site e tenho interesse no produto ${product.name}.`,
     secondaryMessage: `Oi! Tenho uma dúvida sobre o produto ${product.name}.`,
-    kind: product.visualKind,
   };
 }
 

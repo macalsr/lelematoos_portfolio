@@ -8,8 +8,6 @@ export type NavItem = {
   cta?: boolean;
 };
 
-export type ProductKind = "rose" | "heart" | "star" | "leaf";
-
 export type ProductCategoryId = string;
 
 export type ProductItem = {
@@ -21,15 +19,12 @@ export type ProductItem = {
   imagemPrincipal: string;
   descricaoCurta: string;
   destaque: boolean;
-  novidade: boolean;
-  colecaoAtual: boolean;
   disponivel: boolean;
   descricaoLonga: string;
   material: string;
   tamanho: string;
   primaryMessage: string;
   secondaryMessage: string;
-  kind: ProductKind;
 };
 
 export type CategoryItem = {

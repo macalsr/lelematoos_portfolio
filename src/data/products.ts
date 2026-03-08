@@ -11,8 +11,6 @@ export const products: ProductItem[] = [
     descricaoCurta:
       "Peça de parede com arte old school inspirada no traço tradicional da Lele Matoos.",
     destaque: true,
-    novidade: false,
-    colecaoAtual: true,
     disponivel: true,
     descricaoLonga:
       "Bandeira autoral para ambiente interno, criada a partir do repertório visual de tattoo tradicional da artista. Ideal para estúdio, quarto e espaços criativos.",
@@ -22,7 +20,6 @@ export const products: ProductItem[] = [
       "Oi! Quero comprar a Bandeira Rosa Clássica. Tem pronta entrega?",
     secondaryMessage:
       "Oi! Quero mais detalhes de tamanho e material da Bandeira Rosa Clássica.",
-    kind: "rose",
   },
   {
     id: "prod-002",
@@ -34,8 +31,6 @@ export const products: ProductItem[] = [
     descricaoCurta:
       "Impressão autoral em estética retrô para compor ambientes com identidade old school.",
     destaque: true,
-    novidade: true,
-    colecaoAtual: true,
     disponivel: true,
     descricaoLonga:
       "Print em tiragem especial com acabamento fosco e arte assinada. A peça traduz o universo de flash tradicional para decoração autoral.",
@@ -45,7 +40,6 @@ export const products: ProductItem[] = [
       "Oi! Quero comprar o Print Coração Vintage. Como funciona o envio?",
     secondaryMessage:
       "Oi! Quero saber mais sobre papel e tamanho do Print Coração Vintage.",
-    kind: "heart",
   },
   {
     id: "prod-003",
@@ -57,8 +51,6 @@ export const products: ProductItem[] = [
     descricaoCurta:
       "Ecobag em tiragem especial com ilustração autoral para uso diário.",
     destaque: true,
-    novidade: true,
-    colecaoAtual: false,
     disponivel: true,
     descricaoLonga:
       "Ecobag resistente com ilustração inspirada nos desenhos old school da Lele. Pensada para uso cotidiano sem perder personalidade.",
@@ -68,7 +60,6 @@ export const products: ProductItem[] = [
       "Oi! Quero comprar a Ecobag Estrela Old School. Ainda tem disponível?",
     secondaryMessage:
       "Oi! Quero detalhes de medidas e tecido da Ecobag Estrela Old School.",
-    kind: "star",
   },
   {
     id: "prod-004",
@@ -80,8 +71,6 @@ export const products: ProductItem[] = [
     descricaoCurta:
       "Bandeira autoral com composição clássica de andorinha em linguagem old school.",
     destaque: true,
-    novidade: true,
-    colecaoAtual: true,
     disponivel: true,
     descricaoLonga:
       "Peça decorativa em tiragem limitada, inspirada na iconografia tradicional da tatuagem. Ideal para quem quer levar o universo da artista para casa.",
@@ -91,7 +80,6 @@ export const products: ProductItem[] = [
       "Oi! Tenho interesse na Bandeira Andorinha Old School. Está disponível?",
     secondaryMessage:
       "Oi! Quero mais informações sobre acabamento e tamanho da Bandeira Andorinha Old School.",
-    kind: "rose",
   },
   {
     id: "prod-005",
@@ -103,8 +91,6 @@ export const products: ProductItem[] = [
     descricaoCurta:
       "Print com rosa tradicional, contraste forte e assinatura visual da marca.",
     destaque: true,
-    novidade: false,
-    colecaoAtual: true,
     disponivel: true,
     descricaoLonga:
       "Arte impressa em papel fine art com acabamento fosco, feita para compor paredes com estética vintage e identidade autoral.",
@@ -114,7 +100,6 @@ export const products: ProductItem[] = [
       "Oi! Quero comprar o Print Rosa Tradicional. Como faço o pedido?",
     secondaryMessage:
       "Oi! Tenho dúvida sobre envio e embalagem do Print Rosa Tradicional.",
-    kind: "heart",
   },
   {
     id: "prod-006",
@@ -126,8 +111,6 @@ export const products: ProductItem[] = [
     descricaoCurta:
       "Ecobag de uso diário com arte clássica inspirada no repertório tattoo da Lele.",
     destaque: true,
-    novidade: true,
-    colecaoAtual: false,
     disponivel: true,
     descricaoLonga:
       "Ecobag resistente e prática, com impressão autoral em tiragem especial para levar o universo old school da marca no dia a dia.",
@@ -137,7 +120,6 @@ export const products: ProductItem[] = [
       "Oi! Quero comprar a Ecobag Coração Clássico. Ainda tem em estoque?",
     secondaryMessage:
       "Oi! Pode me passar mais detalhes da Ecobag Coração Clássico?",
-    kind: "star",
   },
 ];
 
@@ -146,3 +128,5 @@ export const featuredProducts = products.filter((product) => product.destaque);
 export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug);
 }
+
+
