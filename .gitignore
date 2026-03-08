@@ -1,0 +1,84 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# next.js
+/.next/
+/out/
+/build/
+
+# production
+/dist/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# tests
+/coverage
+/.nyc_output
+
+# runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# vercel
+.vercel
+
+# turborepo
+.turbo
+
+# typescript
+*.tsbuildinfo
+
+# cache
+.cache/
+.parcel-cache/
+
+# editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# windows
+Thumbs.db
+desktop.ini
+
+# temporary files
+tmp/
+temp/
+.tmp/
+.tmp*
+
+# optional local assets generated during work
+/public/uploads
+/public/tmp
+AGENTS.md
