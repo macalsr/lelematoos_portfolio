@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: 248 224 220;
-  --color-surface: 255 239 234;
+  --color-bg: 244 214 211;
+  --color-surface: 255 242 238;
+  --color-surface-deep: 252 233 226;
   --color-header-bg: 138 72 94;
   --color-header-text: 255 239 234;
   --color-primary: 138 72 94;
   --color-secondary: 33 138 10;
   --color-accent: 255 128 170;
-  --color-text: 108 58 76;
-  --color-muted: 138 103 117;
-  --color-border: 148 84 104;
+  --color-text: 92 45 62;
+  --color-muted: 124 88 101;
+  --color-border: 131 73 92;
   --color-button-primary: 138 72 94;
   --color-button-secondary: 202 226 173;
   --color-surface-alt: 236 244 214;
@@ -32,7 +33,10 @@ html {
 
 body {
   margin: 0;
-  background: rgb(var(--color-bg));
+  background:
+    radial-gradient(circle at top, rgba(var(--color-accent-soft), 0.62), transparent 34%),
+    linear-gradient(180deg, rgba(255, 248, 244, 0.62), transparent 28%),
+    rgb(var(--color-bg));
   color: rgb(var(--color-text));
   font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
 }
@@ -62,6 +66,10 @@ a {
 }
 
 .font-logo {
+  font-family: var(--font-imperial-script), cursive;
+}
+
+.font-signature {
   font-family: var(--font-caveat), cursive;
 }
 
@@ -84,4 +92,65 @@ h4,
 h5,
 h6 {
   font-family: var(--font-fjalla), Arial, sans-serif;
+}
+
+::selection {
+  background: rgba(var(--color-accent), 0.28);
+  color: rgb(var(--color-header-bg));
+}
+
+.editorial-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(var(--color-border), 0.16);
+  background:
+    linear-gradient(145deg, rgba(255, 248, 245, 0.82), rgba(var(--color-surface), 0.95)),
+    rgb(var(--color-surface));
+  box-shadow:
+    0 20px 60px rgba(138, 72, 94, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48);
+}
+
+.editorial-panel::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -32px -32px;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: rgba(var(--color-accent-soft), 0.5);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.soft-ring {
+  box-shadow:
+    0 0 0 1px rgba(var(--color-border), 0.14),
+    0 18px 40px rgba(138, 72, 94, 0.08);
+}
+
+.section-reveal {
+  animation: section-enter 700ms ease-out both;
+}
+
+@keyframes section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .section-reveal {
+    animation: none;
+  }
 }

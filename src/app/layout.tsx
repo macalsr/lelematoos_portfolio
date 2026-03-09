@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   Caveat,
   Fjalla_One,
+  Imperial_Script,
   Nunito,
 } from "next/font/google";
 import { getSiteSeo } from "@/lib/siteSeo";
@@ -11,6 +12,11 @@ const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
   weight: ["400", "600", "700", "800"],
+});
+const imperialScript = Imperial_Script({
+  subsets: ["latin"],
+  variable: "--font-imperial-script",
+  weight: "400",
 });
 const caveat = Caveat({
   subsets: ["latin"],
@@ -58,8 +64,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${nunito.variable} ${caveat.variable} ${fjallaOne.variable} bg-bg text-green-dark font-body`}>
-        <div className="h-2 w-full bg-button-primary" />
+      <body className={`${nunito.variable} ${imperialScript.variable} ${caveat.variable} ${fjallaOne.variable} bg-bg text-green-dark font-body`}>
         {children}
       </body>
     </html>

@@ -21,7 +21,9 @@ export function ShopInfoSection({ items, heading }: ShopInfoSectionProps) {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full border border-green-dark/20 bg-green-soft text-lg font-black text-green-dark">
                 {item.id}
               </div>
-              <h3 className="mb-2.5 text-2xl font-black uppercase leading-none text-green-dark">{item.title}</h3>
+              <h3 className="mb-2.5 text-2xl font-black uppercase leading-none tracking-[0.04em] text-green-dark">
+                {item.title}
+              </h3>
               <p className="m-0 text-[15px] leading-[1.75] text-muted">{item.description}</p>
             </Card>
           ))}

@@ -64,38 +64,45 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <Container>
             <Link
               href="/produtos"
-              className="mb-6 inline-block rounded-full border border-green-dark/20 bg-surface px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-green-dark"
+              className="mb-8 inline-flex rounded-full border border-green-dark/15 bg-surface/85 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-green-dark transition-colors duration-200 hover:bg-pink-soft/65"
             >
               Voltar para produtos
             </Link>
 
-            <div className="grid grid-cols-[1fr_1fr] gap-6 max-lg:grid-cols-1">
-              <Card variant="flash">
-                <div className="flex aspect-[4/3] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-md:p-4">
+            <div className="grid grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] gap-6 max-lg:grid-cols-1">
+              <Card variant="flash" className="bg-[rgba(var(--color-surface),0.96)]">
+                <div className="relative flex aspect-[4/4.3] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(155deg,rgba(var(--color-accent-soft),0.82),rgba(var(--color-surface),0.98)_42%,rgba(var(--color-surface-alt),0.98))] p-5 max-md:aspect-[4/4.1] max-md:p-4">
+                  <div className="absolute left-4 top-4 z-10 rounded-full border border-green-dark/10 bg-surface/92 px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-green-dark">
+                    Toque para ampliar
+                  </div>
                   <ProductImageLightbox
                     src={product.imagemPrincipal}
                     alt={product.nome}
-                    className="h-full w-full rounded-xl object-contain object-center"
+                    className="h-full w-full rounded-[24px] object-contain object-center"
+                    triggerClassName="h-full w-full"
                   />
                 </div>
 
-                <div className="p-[22px] max-md:p-5">
-                  <div className="w-fit rounded-full border border-green-dark/20 bg-pink-soft px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-green-dark">
+                <div className="p-6 max-md:p-5">
+                  <div className="w-fit rounded-full border border-green-dark/12 bg-pink-soft/75 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-green-dark">
                     {product.categoria}
                   </div>
-                  <h1 className="mt-4 text-[clamp(30px,4.6vw,48px)] font-black uppercase leading-[0.92] text-green-dark">
+                  <h1 className="mt-5 text-[clamp(30px,4.6vw,52px)] font-black uppercase leading-[0.9] text-green-dark">
                     {product.nome}
                   </h1>
-                  <p className="mt-4 text-[16px] leading-[1.75] text-muted">{product.descricaoLonga}</p>
+                  <p className="mt-4 max-w-[54ch] text-[16px] leading-[1.85] text-muted">{product.descricaoLonga}</p>
                 </div>
               </Card>
 
-              <Card variant="process">
-                <h2 className="mb-4 text-2xl font-black uppercase text-green-dark">Detalhes do produto</h2>
-                <p className="mb-4 text-lg font-black uppercase leading-[1.1] text-pink-dark">{product.nome}</p>
+              <Card variant="process" className="editorial-panel">
+                <div className="font-ui text-[10px] font-black uppercase tracking-[0.28em] text-pink-dark">Detalhes</div>
+                <h2 className="mb-4 mt-3 text-[clamp(28px,3.4vw,40px)] font-black uppercase leading-[0.94] text-green-dark">
+                  Detalhes do produto
+                </h2>
+                <p className="mb-5 text-lg font-black uppercase leading-[1.1] text-pink-dark">{product.nome}</p>
                 <div className="grid gap-3 text-[15px] text-muted">
                   <p>
-                    <strong className="text-green-dark">Preço:</strong> {product.preco}
+                    <strong className="text-green-dark">Preco:</strong> {product.preco}
                   </p>
                   <p>
                     <strong className="text-green-dark">Disponibilidade:</strong> {product.disponivel ? "Disponível" : "Indisponível"}

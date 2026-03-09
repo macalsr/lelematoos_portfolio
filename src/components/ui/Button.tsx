@@ -63,9 +63,9 @@ const variantStyles: Record<Variant, string> = {
   navCta:
     "rounded-full bg-pink-soft px-[18px] py-3 text-[13px] max-md:text-xs",
   miniPrimary:
-    "rounded-2xl bg-button-primary px-4 py-[14px] text-center text-xs text-white max-md:py-3",
+    "rounded-2xl bg-button-primary px-4 py-[14px] text-center text-xs text-white shadow-[0_16px_30px_rgba(138,72,94,0.18)] max-md:py-3",
   miniSecondary:
-    "rounded-2xl bg-button-secondary px-4 py-[14px] text-center text-xs max-md:py-3",
+    "rounded-2xl bg-button-secondary px-4 py-[14px] text-center text-xs shadow-[0_16px_28px_rgba(118,151,89,0.16)] max-md:py-3",
   contactAction:
     "rounded-[20px] bg-surface px-[18px] py-[18px] text-[13px] tracking-[0.12em] max-md:text-xs max-md:leading-[1.5]",
   contactMain:
@@ -75,7 +75,7 @@ const variantStyles: Record<Variant, string> = {
 };
 
 const baseStyle =
-  "font-ui border border-green-dark/20 font-black uppercase tracking-[0.14em] max-md:tracking-[0.11em]";
+  "font-ui inline-flex items-center justify-center border border-green-dark/20 font-black uppercase tracking-[0.14em] transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:brightness-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-dark/30 focus-visible:ring-offset-2 focus-visible:ring-offset-bg max-md:tracking-[0.11em]";
 
 function isAnchorProps(props: AnchorProps | NativeButtonProps): props is AnchorProps {
   return typeof (props as AnchorProps).href === "string";

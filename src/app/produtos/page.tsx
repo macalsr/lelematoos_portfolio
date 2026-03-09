@@ -22,7 +22,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         <ProductsCatalogSection
           products={products}
           categories={categories}
-          whatsappPhone={content.contact.whatsappPhone}
           initialCategory={categoria}
           heading={content.sections.catalogo}
         />

@@ -25,7 +25,6 @@ export default async function Home() {
         <FeaturedProductsSection
           products={products}
           categories={categories}
-          whatsappPhone={content.contact.whatsappPhone}
           heading={content.sections.produtos}
         />
         <ShopInfoSection items={faqItems} heading={content.sections.faq} />
