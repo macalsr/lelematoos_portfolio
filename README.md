@@ -33,6 +33,7 @@ npm run dev
 
 ## Cloudflare Workers (OpenNext)
 This project is configured to deploy on Cloudflare Workers using OpenNext.
+It is **not** configured for Cloudflare Pages + `next-on-pages`.
 
 1. Build worker assets:
 ```bash
@@ -46,6 +47,10 @@ npm run preview
 ```bash
 npm run deploy
 ```
+
+Important:
+- In Cloudflare, create/use a **Workers** project (not Pages).
+- If a CI pipeline is still calling `npx @cloudflare/next-on-pages@1`, remove that step and use `npm run build:cf` + `npm run deploy` (or `npm run deploy:workers`).
 
 Main config files:
 - `open-next.config.ts`
