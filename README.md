@@ -101,17 +101,16 @@ Edit only:
 - Desktop: full visible navigation
 - Mobile: compact fixed header with menu button and expandable menu
 
-## Sanity CMS (initial setup)
-Studio is embedded in this Next.js app at:
-- `/admin`
+## Sanity CMS
+Studio route in this app:
+- `/admin` (light redirect only)
 
 Studio source/config folder:
 - `studio-lele-matos-site/`
 
 Configured Sanity project:
 - `projectId: qtnabn6i`
-- `dataset: production`
-- `basePath: /admin`
+- `datasets (Studio workspaces): production, homolog`
 
 Current schemas:
 - `product`
@@ -129,6 +128,18 @@ Useful files:
 - `src/lib/sanity/fetchers.ts`
 
 Environment:
-1. Copy `.env.example` to `.env.local`.
-2. Keep the provided Sanity values or adjust if needed.
+1. Configure `SANITY_STUDIO_URL` with your external Studio URL.
+2. Keep the public project settings (`NEXT_PUBLIC_SANITY_*`) aligned with your Sanity project.
 3. `SANITY_FALLBACK_MODE=off` uses Sanity as source of truth; set `on` to enable local mock fallback.
+
+Studio workspaces URLs:
+- Production workspace: `https://lelematoos.sanity.studio/production`
+- Homolog workspace: `https://lelematoos.sanity.studio/homolog`
+
+Cloudflare environment setup (recommended):
+- Production environment:
+  - `SANITY_STUDIO_URL=https://lelematoos.sanity.studio/production`
+  - `NEXT_PUBLIC_SANITY_DATASET=production`
+- Homolog/Preview environment:
+  - `SANITY_STUDIO_URL=https://lelematoos.sanity.studio/homolog`
+  - `NEXT_PUBLIC_SANITY_DATASET=homolog`

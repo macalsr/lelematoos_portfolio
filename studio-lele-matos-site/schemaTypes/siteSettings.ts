@@ -184,40 +184,6 @@ export const siteSettingsType = defineType({
       description: "Texto curto exibido no header, abaixo do nome da marca.",
     }),
     defineField({
-      name: "fontVariant",
-      title: "Estilo de fonte do site",
-      type: "string",
-      fieldset: "brand",
-      description: "Escolha uma combinação tipográfica pronta para o site.",
-      options: {
-        list: [
-          { title: "Clássico Script", value: "classic-script" },
-          { title: "Vintage Marcante", value: "vintage-bold" },
-          { title: "Editorial Limpo", value: "clean-editorial" },
-          { title: "Oldschool Suave", value: "oldschool-soft" },
-        ],
-      },
-      initialValue: "classic-script",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "themeVariant",
-      title: "Paleta de cores do site",
-      type: "string",
-      fieldset: "brand",
-      description: "Escolha uma paleta pronta para mudar o visual sem quebrar o design.",
-      options: {
-        list: [
-          { title: "Rosa e verde clássico", value: "classic-rose" },
-          { title: "Doce retrô colorido", value: "olive-vintage" },
-          { title: "Vinho e rosa vibrante", value: "dark-oldschool" },
-          { title: "Místico vibrante", value: "cream-pink" },
-        ],
-      },
-      initialValue: "classic-rose",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "sectionProductsKicker",
       title: "Produtos: label pequena",
       type: "string",

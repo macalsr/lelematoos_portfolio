@@ -1,5 +1,5 @@
 {
-  "name": "site-leticia",
+  "name": "lelematoos",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -28,7 +28,6 @@
     "next": "^16.1.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "sanity": "^3.99.0",
     "styled-components": "^6.3.11"
   },
   "devDependencies": {
@@ -37,6 +36,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "autoprefixer": "^10.4.20",
+    "esbuild": "^0.27.3",
     "eslint": "^9.22.0",
     "eslint-config-next": "^16.1.6",
     "postcss": "^8.5.3",

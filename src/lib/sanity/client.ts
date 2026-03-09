@@ -1,10 +1,36 @@
-import { createClient } from "@sanity/client";
 import { sanityConfig } from "./config";
 
-export const sanityClient = createClient({
-  projectId: sanityConfig.projectId,
-  dataset: sanityConfig.dataset,
-  apiVersion: sanityConfig.apiVersion,
-  useCdn: sanityConfig.useCdn,
-});
+type SanityQueryParams = Record<string, string | number | boolean>;
 
+function getSanityBaseUrl() {
+  const apiHost = sanityConfig.useCdn ? "apicdn.sanity.io" : "api.sanity.io";
+  return `https://${sanityConfig.projectId}.${apiHost}/v${sanityConfig.apiVersion}/data/query/${sanityConfig.dataset}`;
+}
+
+export async function fetchSanity<T>(query: string, params: SanityQueryParams = {}): Promise<T> {
+  const token = process.env.SANITY_API_READ_TOKEN?.trim();
+  if (!token) {
+    throw new Error("Missing SANITY_API_READ_TOKEN for private Sanity dataset access");
+  }
+
+  const searchParams = new URLSearchParams({ query });
+
+  for (const [key, value] of Object.entries(params)) {
+    searchParams.set(`$${key}`, String(value));
+  }
+
+  const response = await fetch(`${getSanityBaseUrl()}?${searchParams.toString()}`, {
+    method: "GET",
+    cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Sanity query failed with status ${response.status}`);
+  }
+
+  const payload = (await response.json()) as { result: T };
+  return payload.result;
+}
