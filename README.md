@@ -9,11 +9,12 @@ Landing page for Lele Matoos (tattoo artist) built with Next.js + TypeScript + T
 
 ## Scripts
 - `npm run dev` - start local dev server
-- `npm run build` - regular Next.js build
-- `npm run build:cf` - build for Cloudflare Workers (OpenNext)
+- `npm run build` - build for Cloudflare Workers (OpenNext)
+- `npm run build:next` - regular Next.js build (Node runtime, optional)
 - `npm run preview` - preview Cloudflare worker locally
 - `npm run cf:dev` - run Wrangler dev server for built worker
-- `npm run deploy` - deploy to Cloudflare Workers
+- `npm run deploy` - deploy to Cloudflare Workers (requires previous OpenNext build)
+- `npm run deploy:full` - build + deploy to Cloudflare Workers
 - `npm run start` - run Next.js production server (Node, optional)
 - `npm run lint` - lint project
 - `npm run sanity:dev` - run Sanity Studio
@@ -37,7 +38,7 @@ It is **not** configured for Cloudflare Pages + `next-on-pages`.
 
 1. Build worker assets:
 ```bash
-npm run build:cf
+npm run build
 ```
 2. Preview locally with worker runtime:
 ```bash
@@ -50,7 +51,12 @@ npm run deploy
 
 Important:
 - In Cloudflare, create/use a **Workers** project (not Pages).
-- If a CI pipeline is still calling `npx @cloudflare/next-on-pages@1`, remove that step and use `npm run build:cf` + `npm run deploy` (or `npm run deploy:workers`).
+- If a CI pipeline is still calling `npx @cloudflare/next-on-pages@1`, remove that step and use `npm run build` + `npm run deploy`.
+- Do not use only `npx wrangler versions upload` without running the OpenNext build first, because `.open-next/worker.js` will not exist.
+
+### Cloudflare Workers dashboard commands
+- Build command: `npm run build`
+- Deploy command: `npm run deploy`
 
 Main config files:
 - `open-next.config.ts`

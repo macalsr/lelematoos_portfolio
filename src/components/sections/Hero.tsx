@@ -1,6 +1,5 @@
 import { Container } from "@/components/ui/Container";
 import { siteContent as mockSiteContent } from "@/data/site";
-import { RoseIcon } from "@/components/ui/TattooIcons";
 import { sectionStyles } from "@/lib/sectionStyles";
 import type { SiteContent } from "@/types/site";
 
@@ -28,16 +27,14 @@ export function Hero({ content }: HeroProps) {
         <div className="flex w-full max-w-[760px] flex-col items-center gap-6 text-center max-md:gap-5">
           <div className="flex flex-col items-center gap-[18px]">
             <div className={heroImageWrapClass}>
-              {heroImageUrl ? (
+              {
                 <img
                   src={heroImageUrl}
                   alt={heroImageAlt}
                   className="w-full rounded-xl object-cover"
                   loading="eager"
                 />
-              ) : (
-                <RoseIcon className="w-full" />
-              )}
+              }
             </div>
 
             <h1 className="font-logo m-0 text-[clamp(62px,8vw,104px)] font-normal leading-[0.9] text-pink-shock">
