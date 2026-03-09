@@ -45,6 +45,10 @@ pids
 # vercel
 .vercel
 
+# cloudflare / opennext
+.open-next/
+.wrangler/
+
 # turborepo
 .turbo
 
@@ -86,4 +90,4 @@ studio-lele-matos-site/.sanity/
 /public/uploads
 /public/tmp
 AGENTS.md
-.env.example
+.env

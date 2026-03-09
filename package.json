@@ -8,6 +8,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:cf": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare deploy",
+    "cf:dev": "wrangler dev",
     "start": "next start",
     "lint": "next lint",
     "sanity:dev": "cd studio-lele-matos-site && sanity dev",
@@ -16,7 +20,6 @@
   },
   "dependencies": {
     "@sanity/client": "^7.16.0",
-    "@vercel/analytics": "^1.6.1",
     "groq": "^3.99.0",
     "next": "^16.1.6",
     "react": "^19.2.0",
@@ -25,6 +28,7 @@
     "styled-components": "^6.3.11"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.17.1",
     "@types/node": "^22.13.11",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -33,6 +37,7 @@
     "eslint-config-next": "^16.1.6",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "wrangler": "^4.71.0"
   }
 }

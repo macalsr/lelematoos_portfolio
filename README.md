@@ -9,8 +9,12 @@ Landing page for Lele Matoos (tattoo artist) built with Next.js + TypeScript + T
 
 ## Scripts
 - `npm run dev` - start local dev server
-- `npm run build` - production build
-- `npm run start` - run production build
+- `npm run build` - regular Next.js build
+- `npm run build:cf` - build for Cloudflare Workers (OpenNext)
+- `npm run preview` - preview Cloudflare worker locally
+- `npm run cf:dev` - run Wrangler dev server for built worker
+- `npm run deploy` - deploy to Cloudflare Workers
+- `npm run start` - run Next.js production server (Node, optional)
 - `npm run lint` - lint project
 - `npm run sanity:dev` - run Sanity Studio
 - `npm run sanity:build` - build Sanity Studio
@@ -26,6 +30,26 @@ npm install
 npm run dev
 ```
 3. Open `http://localhost:3000`
+
+## Cloudflare Workers (OpenNext)
+This project is configured to deploy on Cloudflare Workers using OpenNext.
+
+1. Build worker assets:
+```bash
+npm run build:cf
+```
+2. Preview locally with worker runtime:
+```bash
+npm run preview
+```
+3. Deploy:
+```bash
+npm run deploy
+```
+
+Main config files:
+- `open-next.config.ts`
+- `wrangler.jsonc`
 
 ## Project structure
 ```text

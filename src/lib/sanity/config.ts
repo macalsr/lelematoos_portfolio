@@ -6,7 +6,7 @@ export const sanityConfig = {
 };
 
 export function getSanityFallbackMode() {
-  return (process.env.SANITY_FALLBACK_MODE ?? process.env.NEXT_PUBLIC_SANITY_FALLBACK_MODE ?? "off")
+  return (process.env.SANITY_FALLBACK_MODE ?? "off")
     .trim()
     .toLowerCase();
 }

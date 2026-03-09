@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "site-leticia",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-03-09",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "qtnabn6i",
+    "NEXT_PUBLIC_SANITY_DATASET": "production",
+    "NEXT_PUBLIC_SANITY_API_VERSION": "2025-01-01",
+    "SANITY_FALLBACK_MODE": "off"
+  }
+}
