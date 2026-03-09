@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: 245 239 232;
-  --color-surface: 255 248 246;
-  --color-header-bg: 25 63 49;
-  --color-header-text: 255 248 246;
-  --color-primary: 25 63 49;
-  --color-secondary: 49 88 70;
-  --color-accent: 231 164 190;
-  --color-text: 25 63 49;
-  --color-muted: 75 106 90;
-  --color-border: 25 63 49;
-  --color-button-primary: 25 63 49;
-  --color-button-secondary: 217 233 203;
-  --color-surface-alt: 232 242 223;
-  --color-accent-soft: 244 202 215;
-  --color-accent-strong: 203 92 136;
-  --color-accent-vivid: 255 79 154;
+  --color-bg: 248 224 220;
+  --color-surface: 255 239 234;
+  --color-header-bg: 138 72 94;
+  --color-header-text: 255 239 234;
+  --color-primary: 138 72 94;
+  --color-secondary: 33 138 10;
+  --color-accent: 255 128 170;
+  --color-text: 108 58 76;
+  --color-muted: 138 103 117;
+  --color-border: 148 84 104;
+  --color-button-primary: 138 72 94;
+  --color-button-secondary: 202 226 173;
+  --color-surface-alt: 236 244 214;
+  --color-accent-soft: 255 210 223;
+  --color-accent-strong: 161 92 118;
+  --color-accent-vivid: 255 128 170;
 }
 
 * {
@@ -34,7 +34,7 @@ body {
   margin: 0;
   background: rgb(var(--color-bg));
   color: rgb(var(--color-text));
-  font-family: var(--font-body-current, Arial), Helvetica, sans-serif;
+  font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
 }
 
 section[id] {
@@ -61,24 +61,20 @@ a {
   text-decoration: none;
 }
 
-.font-imperial {
-  font-family: var(--font-imperial), cursive;
-}
-
 .font-logo {
-  font-family: var(--font-logo-current, var(--font-imperial)), cursive;
+  font-family: var(--font-caveat), cursive;
 }
 
 .font-heading {
-  font-family: var(--font-heading-current, var(--font-oswald)), Arial, sans-serif;
+  font-family: var(--font-fjalla), Arial, sans-serif;
 }
 
 .font-body {
-  font-family: var(--font-body-current, Arial), Helvetica, sans-serif;
+  font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
 }
 
 .font-ui {
-  font-family: var(--font-heading-current, var(--font-oswald)), Arial, sans-serif;
+  font-family: var(--font-fjalla), Arial, sans-serif;
 }
 
 h1,
@@ -87,29 +83,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading-current, var(--font-oswald)), Arial, sans-serif;
-}
-
-.font-variant-classic-script {
-  --font-logo-current: var(--font-imperial);
-  --font-heading-current: var(--font-oswald);
-  --font-body-current: var(--font-nunito);
-}
-
-.font-variant-vintage-bold {
-  --font-logo-current: var(--font-bebas);
-  --font-heading-current: var(--font-bebas);
-  --font-body-current: var(--font-nunito);
-}
-
-.font-variant-clean-editorial {
-  --font-logo-current: var(--font-playfair);
-  --font-heading-current: var(--font-playfair);
-  --font-body-current: var(--font-lora);
-}
-
-.font-variant-oldschool-soft {
-  --font-logo-current: var(--font-caveat);
-  --font-heading-current: var(--font-fjalla);
-  --font-body-current: var(--font-nunito);
+  font-family: var(--font-fjalla), Arial, sans-serif;
 }

@@ -1,6 +1,3 @@
-import type { FontVariant } from "@/lib/fonts";
-import type { ThemeVariant } from "@/lib/themes";
-
 export type NavItem = {
   id?: string;
   label: string;
@@ -77,8 +74,6 @@ export type SiteContent = {
     imageUrl?: string;
     imageAlt?: string;
   };
-  fontVariant: FontVariant;
-  themeVariant: ThemeVariant;
   nav: NavItem[];
   contact: {
     whatsappPhone: string;

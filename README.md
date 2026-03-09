@@ -9,11 +9,12 @@ Landing page for Lele Matoos (tattoo artist) built with Next.js + TypeScript + T
 
 ## Scripts
 - `npm run dev` - start local dev server
-- `npm run build` - regular Next.js build
-- `npm run build:cf` - build for Cloudflare Workers (OpenNext)
+- `npm run build` - build for Cloudflare Workers (OpenNext)
+- `npm run build:next` - regular Next.js build (Node runtime, optional)
 - `npm run preview` - preview Cloudflare worker locally
 - `npm run cf:dev` - run Wrangler dev server for built worker
-- `npm run deploy` - deploy to Cloudflare Workers
+- `npm run deploy` - deploy to Cloudflare Workers (requires previous OpenNext build)
+- `npm run deploy:full` - build + deploy to Cloudflare Workers
 - `npm run start` - run Next.js production server (Node, optional)
 - `npm run lint` - lint project
 - `npm run sanity:dev` - run Sanity Studio
@@ -33,10 +34,11 @@ npm run dev
 
 ## Cloudflare Workers (OpenNext)
 This project is configured to deploy on Cloudflare Workers using OpenNext.
+It is **not** configured for Cloudflare Pages + `next-on-pages`.
 
 1. Build worker assets:
 ```bash
-npm run build:cf
+npm run build
 ```
 2. Preview locally with worker runtime:
 ```bash
@@ -46,6 +48,15 @@ npm run preview
 ```bash
 npm run deploy
 ```
+
+Important:
+- In Cloudflare, create/use a **Workers** project (not Pages).
+- If a CI pipeline is still calling `npx @cloudflare/next-on-pages@1`, remove that step and use `npm run build` + `npm run deploy`.
+- Do not use only `npx wrangler versions upload` without running the OpenNext build first, because `.open-next/worker.js` will not exist.
+
+### Cloudflare Workers dashboard commands
+- Build command: `npm run build`
+- Deploy command: `npm run deploy`
 
 Main config files:
 - `open-next.config.ts`
@@ -90,17 +101,16 @@ Edit only:
 - Desktop: full visible navigation
 - Mobile: compact fixed header with menu button and expandable menu
 
-## Sanity CMS (initial setup)
-Studio is embedded in this Next.js app at:
-- `/admin`
+## Sanity CMS
+Studio route in this app:
+- `/admin` (light redirect only)
 
 Studio source/config folder:
 - `studio-lele-matos-site/`
 
 Configured Sanity project:
 - `projectId: qtnabn6i`
-- `dataset: production`
-- `basePath: /admin`
+- `datasets (Studio workspaces): production, homolog`
 
 Current schemas:
 - `product`
@@ -118,6 +128,18 @@ Useful files:
 - `src/lib/sanity/fetchers.ts`
 
 Environment:
-1. Copy `.env.example` to `.env.local`.
-2. Keep the provided Sanity values or adjust if needed.
+1. Configure `SANITY_STUDIO_URL` with your external Studio URL.
+2. Keep the public project settings (`NEXT_PUBLIC_SANITY_*`) aligned with your Sanity project.
 3. `SANITY_FALLBACK_MODE=off` uses Sanity as source of truth; set `on` to enable local mock fallback.
+
+Studio workspaces URLs:
+- Production workspace: `https://lelematoos.sanity.studio/production`
+- Homolog workspace: `https://lelematoos.sanity.studio/homolog`
+
+Cloudflare environment setup (recommended):
+- Production environment:
+  - `SANITY_STUDIO_URL=https://lelematoos.sanity.studio/production`
+  - `NEXT_PUBLIC_SANITY_DATASET=production`
+- Homolog/Preview environment:
+  - `SANITY_STUDIO_URL=https://lelematoos.sanity.studio/homolog`
+  - `NEXT_PUBLIC_SANITY_DATASET=homolog`

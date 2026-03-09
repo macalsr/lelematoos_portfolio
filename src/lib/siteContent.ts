@@ -1,6 +1,4 @@
-﻿import { siteContent as mockSiteContent } from "@/data/site";
-import { getSafeFontVariant } from "@/lib/fonts";
-import { getSafeThemeVariant } from "@/lib/themes";
+import { siteContent as mockSiteContent } from "@/data/site";
 import { shouldUseLocalFallback } from "@/lib/sanity/config";
 import { fetchSanitySiteSettings } from "@/lib/sanity/fetchers";
 import type { SiteContent } from "@/types/site";
@@ -22,8 +20,6 @@ type SanitySiteSettings = {
   heroImageUrl?: string;
   heroImageAlt?: string;
   brandTagline?: string;
-  fontVariant?: string;
-  themeVariant?: string;
   contactFloatingText?: string;
   contactFloatingInstagramText?: string;
   sectionProductsKicker?: string;
@@ -43,9 +39,7 @@ function cloneSiteContent(base: SiteContent): SiteContent {
     brand: { ...base.brand },
     hero: { ...base.hero },
     nav: [...base.nav],
-    contact: {
-      ...base.contact,
-    },
+    contact: { ...base.contact },
     sections: {
       produtos: { ...base.sections.produtos },
       catalogo: { ...base.sections.catalogo },
@@ -59,8 +53,6 @@ function createEmptySiteContent(): SiteContent {
     seo: { title: "", description: "" },
     brand: { name: "", tagline: "", logoImageUrl: undefined, logoImageAlt: undefined },
     hero: { title: "", subtitle: "", note: "", imageSize: "medium", imageUrl: undefined, imageAlt: undefined },
-    fontVariant: mockSiteContent.fontVariant,
-    themeVariant: mockSiteContent.themeVariant,
     nav: [...mockSiteContent.nav],
     contact: {
       whatsappPhone: "",
@@ -85,7 +77,6 @@ function normalizeWhatsappPhone(value?: string) {
   const input = value?.trim();
   if (!input) return "";
 
-  // Accept full WhatsApp links or raw numbers.
   const waMeMatch = input.match(/wa\.me\/(\d{10,15})/i);
   if (waMeMatch?.[1]) return waMeMatch[1];
 
@@ -125,8 +116,6 @@ export async function getSiteContent() {
     if (settings.heroImageUrl?.trim()) content.hero.imageUrl = settings.heroImageUrl.trim();
     if (settings.heroImageAlt?.trim()) content.hero.imageAlt = settings.heroImageAlt.trim();
     if (settings.brandTagline?.trim()) content.brand.tagline = settings.brandTagline.trim();
-    content.fontVariant = getSafeFontVariant(settings.fontVariant);
-    content.themeVariant = getSafeThemeVariant(settings.themeVariant);
     if (settings.contactFloatingText?.trim()) content.contact.floatingText = settings.contactFloatingText.trim();
     if (settings.contactFloatingInstagramText?.trim()) {
       content.contact.floatingInstagramText = settings.contactFloatingInstagramText.trim();

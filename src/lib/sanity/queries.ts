@@ -1,6 +1,4 @@
-import groq from "groq";
-
-export const productsQuery = groq`*[_type == "product" && archived != true] | order(_createdAt desc){
+export const productsQuery = `*[_type == "product" && archived != true] | order(_createdAt desc){
   _id,
   name,
   "slug": slug.current,
@@ -19,7 +17,7 @@ export const productsQuery = groq`*[_type == "product" && archived != true] | or
   "mainImageUrl": mainImage.asset->url
 }`;
 
-export const productBySlugQuery = groq`*[_type == "product" && archived != true && slug.current == $slug][0]{
+export const productBySlugQuery = `*[_type == "product" && archived != true && slug.current == $slug][0]{
   _id,
   name,
   "slug": slug.current,
@@ -38,11 +36,11 @@ export const productBySlugQuery = groq`*[_type == "product" && archived != true 
   "mainImageUrl": mainImage.asset->url
 }`;
 
-export const productSlugsQuery = groq`*[_type == "product" && archived != true && defined(slug.current)]{
+export const productSlugsQuery = `*[_type == "product" && archived != true && defined(slug.current)]{
   "slug": slug.current
 }`;
 
-export const categoriesQuery = groq`*[_type == "category" && archived != true] | order(order asc, name asc){
+export const categoriesQuery = `*[_type == "category" && archived != true] | order(order asc, name asc){
   _id,
   name,
   "slug": slug.current,
@@ -50,7 +48,7 @@ export const categoriesQuery = groq`*[_type == "category" && archived != true] |
   order
 }`;
 
-export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
+export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   _id,
   seo,
   seoTitle,
@@ -69,8 +67,6 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   "heroImageUrl": coalesce(heroImageSvg.asset->url, heroImage.asset->url),
   "heroImageAlt": coalesce(heroImage.alt, heroTitle, "Imagem do hero"),
   brandTagline,
-  fontVariant,
-  themeVariant,
   contactFloatingText,
   contactFloatingInstagramText,
   sectionProductsKicker,
@@ -84,13 +80,13 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   sectionFaqText
 }`;
 
-export const faqItemsQuery = groq`*[_type == "faqItem" && archived != true] | order(_createdAt asc){
+export const faqItemsQuery = `*[_type == "faqItem" && archived != true] | order(_createdAt asc){
   _id,
   question,
   answer
 }`;
 
-export const galleryItemsQuery = groq`*[_type == "galleryItem"] | order(order asc, _createdAt asc){
+export const galleryItemsQuery = `*[_type == "galleryItem"] | order(order asc, _createdAt asc){
   _id,
   title,
   description,

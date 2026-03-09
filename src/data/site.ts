@@ -19,8 +19,6 @@ export const siteContent: SiteContent = {
     note: "Marca autoral · peças em tiragem especial · universo old school",
     imageSize: "medium",
   },
-  fontVariant: "classic-script",
-  themeVariant: "classic-rose",
   nav: [
     { id: "nav-produtos", label: "Produtos", href: "/produtos" },
     { id: "nav-faq", label: "FAQ", href: "#faq" },
