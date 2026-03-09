@@ -38,36 +38,34 @@ function formatPrice(value?: number) {
 }
 
 function mapSanityProductToFrontend(product: SanityProduct): ProductItem | null {
-  if (
-    !product._id ||
-    !product.slug ||
-    !product.name ||
-    typeof product.price !== "number" ||
-    Number.isNaN(product.price) ||
-    !product.shortDescription ||
-    !product.longDescription ||
-    !product.material ||
-    !product.size ||
-    !product.mainImageUrl
-  ) {
+  if (!product._id || !product.slug || !product.name) {
     return null;
   }
 
   const category = normalizeCategoryId(product.category?.slug);
+  const shortDescription = product.shortDescription?.trim() || "Consulte detalhes no WhatsApp.";
+  const longDescription = product.longDescription?.trim() || shortDescription;
+  const material = product.material?.trim() || "Consulte";
+  const size = product.size?.trim() || "Consulte";
+  const mainImageUrl = product.mainImageUrl?.trim() || "/products/print-coracao-vintage.jpg";
+  const priceLabel =
+    typeof product.price === "number" && !Number.isNaN(product.price)
+      ? formatPrice(product.price)
+      : "Sob consulta";
 
   return {
     id: product._id,
     slug: product.slug,
     nome: product.name,
     categoria: category,
-    preco: formatPrice(product.price),
-    imagemPrincipal: product.mainImageUrl,
-    descricaoCurta: product.shortDescription,
+    preco: priceLabel,
+    imagemPrincipal: mainImageUrl,
+    descricaoCurta: shortDescription,
     destaque: Boolean(product.featured),
     disponivel: product.available !== false,
-    descricaoLonga: product.longDescription,
-    material: product.material,
-    tamanho: product.size,
+    descricaoLonga: longDescription,
+    material,
+    tamanho: size,
     primaryMessage: `Oi! Vim pelo site e tenho interesse no produto ${product.name}.`,
     secondaryMessage: `Oi! Tenho uma dúvida sobre o produto ${product.name}.`,
   };
@@ -86,7 +84,8 @@ export async function getProducts() {
 
     if (mapped.length > 0) return mapped;
     return [];
-  } catch {
+  } catch (error) {
+    console.error("[Sanity] Failed to fetch products:", error);
     return [];
   }
 }
@@ -105,7 +104,8 @@ export async function getProductBySlug(slug: string) {
     const sanityProduct = (await fetchSanityProductBySlug(slug)) as SanityProduct | null;
     const mapped = sanityProduct ? mapSanityProductToFrontend(sanityProduct) : null;
     if (mapped) return mapped;
-  } catch {
+  } catch (error) {
+    console.error(`[Sanity] Failed to fetch product by slug "${slug}":`, error);
     return undefined;
   }
 
@@ -122,7 +122,8 @@ export async function getProductSlugs() {
     const slugs = sanitySlugs.map((item) => item.slug).filter((item): item is string => Boolean(item));
     if (slugs.length > 0) return slugs;
     return [];
-  } catch {
+  } catch (error) {
+    console.error("[Sanity] Failed to fetch product slugs:", error);
     return [];
   }
 }

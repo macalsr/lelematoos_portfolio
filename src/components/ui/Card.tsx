@@ -10,9 +10,9 @@ type CardProps = {
 
 const cardVariants: Record<CardVariant, string> = {
   plain: "",
-  quick: "rounded-[22px] p-5 text-center",
-  flash: "flex h-full flex-col overflow-hidden rounded-[30px]",
-  process: "rounded-[26px] p-6 max-md:p-5",
+  quick: "rounded-[24px] p-5 text-center shadow-[0_18px_36px_rgba(138,72,94,0.06)]",
+  flash: "flex h-full flex-col overflow-hidden rounded-[22px] shadow-[0_18px_42px_rgba(138,72,94,0.06)] transition-transform duration-300 hover:-translate-y-1",
+  process: "rounded-[28px] p-6 shadow-[0_20px_48px_rgba(138,72,94,0.08)] max-md:p-5",
   portfolio: "overflow-hidden rounded-[28px]",
 };
 

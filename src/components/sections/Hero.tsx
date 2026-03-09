@@ -16,38 +16,40 @@ export function Hero({ content }: HeroProps) {
   const heroImageSize = content.hero.imageSize || "medium";
   const heroImageWrapClass =
     heroImageSize === "small"
-      ? "w-[min(320px,82%)] max-md:w-[min(260px,84%)]"
+      ? "w-[min(420px,84vw)] max-md:w-[min(300px,88vw)]"
       : heroImageSize === "large"
-        ? "w-[min(520px,95%)] max-md:w-[min(420px,95%)]"
-        : "w-[min(420px,90%)]";
+        ? "w-[min(760px,96vw)] max-md:w-[min(470px,96vw)]"
+        : "w-[min(620px,92vw)] max-md:w-[min(390px,92vw)]";
 
   return (
     <section id="home" className={sectionStyles.hero}>
-      <Container className="flex items-center justify-center">
-        <div className="flex w-full max-w-[760px] flex-col items-center gap-6 text-center max-md:gap-5">
-          <div className="flex flex-col items-center gap-[18px]">
-            <div className={heroImageWrapClass}>
-              {
-                <img
-                  src={heroImageUrl}
-                  alt={heroImageAlt}
-                  className="w-full rounded-xl object-cover"
-                  loading="eager"
-                />
-              }
-            </div>
+      <Container className="section-reveal">
+        <div className="relative flex flex-col items-center overflow-hidden px-2 pb-4 pt-6 text-center max-md:px-0 max-md:pt-2">
+          <div className="absolute top-10 h-[64%] w-[min(860px,92%)] rounded-[999px] bg-[radial-gradient(circle,rgba(var(--color-accent-soft),0.42),rgba(255,255,255,0)_68%)] blur-2xl max-md:top-16 max-md:w-full" />
+          <div className="absolute top-[20%] h-20 w-20 rounded-full bg-white/35 blur-2xl max-md:hidden" />
 
-            <h1 className="font-logo m-0 text-[clamp(62px,8vw,104px)] font-normal leading-[0.9] text-pink-shock">
-              {heroName}
-            </h1>
-            <div className="font-ui text-[clamp(14px,1.6vw,20px)] font-black uppercase tracking-[0.2em] text-header-bg max-md:text-[14px] max-md:tracking-[0.12em]">
-              {heroSubname}
-            </div>
+          <div className={`relative z-10 ${heroImageWrapClass}`}>
+            <img
+              src={heroImageUrl}
+              alt={heroImageAlt}
+              className="w-full object-cover drop-shadow-[0_42px_56px_rgba(108,58,76,0.2)]"
+              loading="eager"
+            />
           </div>
 
-          <p className="font-body px-2 text-center text-[13px] font-extrabold uppercase tracking-[0.14em] text-muted max-md:text-xs max-md:leading-[1.55] max-md:tracking-[0.1em]">
-            {heroNote}
-          </p>
+          <div className="relative z-20 mt-2 flex max-w-[620px] flex-col items-center max-md:mt-1">
+            <div className="font-ui text-[11px] font-black uppercase tracking-[0.34em] text-header-bg/76 max-md:text-[10px] max-md:tracking-[0.22em]">
+              {heroSubname}
+            </div>
+
+            <h1 className="font-logo m-0 mt-3 text-[clamp(84px,11vw,168px)] font-normal leading-[0.8] text-pink-shock max-md:mt-2 max-md:text-[clamp(68px,20vw,112px)]">
+              {heroName}
+            </h1>
+
+            <p className="mt-4 max-w-[42ch] text-[15px] leading-[1.85] text-header-bg/82 max-md:mt-3 max-md:max-w-[32ch] max-md:text-[14px] max-md:leading-[1.72]">
+              {heroNote}
+            </p>
+          </div>
         </div>
       </Container>
     </section>

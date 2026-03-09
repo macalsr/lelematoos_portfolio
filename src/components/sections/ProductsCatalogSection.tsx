@@ -10,7 +10,6 @@ import type { CategoryItem, ProductCategoryId, ProductItem, SiteContent } from "
 type ProductsCatalogSectionProps = {
   products: ProductItem[];
   categories: CategoryItem[];
-  whatsappPhone: string;
   initialCategory?: string;
   heading: SiteContent["sections"]["catalogo"];
 };
@@ -18,7 +17,6 @@ type ProductsCatalogSectionProps = {
 export function ProductsCatalogSection({
   products,
   categories,
-  whatsappPhone,
   initialCategory,
   heading,
 }: ProductsCatalogSectionProps) {
@@ -40,18 +38,23 @@ export function ProductsCatalogSection({
     return availableProducts.filter((product) => product.categoria === activeCategory);
   }, [activeCategory, availableProducts]);
 
+  const filterButtonClass = (isActive: boolean) =>
+    `rounded-full border px-4 py-3 text-[11px] font-black uppercase tracking-[0.16em] transition-all duration-200 max-md:px-3.5 max-md:py-2.5 ${
+      isActive
+        ? "border-pink-dark/20 bg-button-primary text-white shadow-[0_14px_28px_rgba(138,72,94,0.18)]"
+        : "border-green-dark/12 bg-surface/75 text-green-dark hover:border-pink-dark/15 hover:bg-pink-soft/65"
+    }`;
+
   return (
     <section id="produtos" className={`${sectionStyles.base} ${sectionStyles.tinted}`}>
       <Container>
         <SectionHeading kicker={heading.kicker} title={heading.title} text={heading.text} />
 
-        <div className="mt-6 flex flex-wrap gap-2 max-md:mt-5">
+        <div className="mt-8 flex flex-wrap gap-2.5 max-md:gap-2">
           <button
             type="button"
             onClick={() => setActiveCategory("todas")}
-            className={`rounded-full border border-green-dark/20 px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] ${
-              activeCategory === "todas" ? "bg-button-primary text-white" : "bg-surface text-green-dark"
-            }`}
+            className={filterButtonClass(activeCategory === "todas")}
           >
             Todas
           </button>
@@ -61,22 +64,19 @@ export function ProductsCatalogSection({
               key={category.id}
               type="button"
               onClick={() => setActiveCategory(category.id)}
-              className={`rounded-full border border-green-dark/20 px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] ${
-                activeCategory === category.id ? "bg-button-primary text-white" : "bg-surface text-green-dark"
-              }`}
+              className={filterButtonClass(activeCategory === category.id)}
             >
               {category.nome}
             </button>
           ))}
         </div>
 
-        <div className={`${sectionStyles.contentGridTop} grid grid-cols-3 gap-[22px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4`}>
+        <div className={`${sectionStyles.contentGridTop} grid grid-cols-2 gap-x-8 gap-y-10 max-xl:gap-x-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-y-8`}>
           {visibleProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
               categoryLabel={categoryNames.get(product.categoria) ?? product.categoria}
-              whatsappPhone={whatsappPhone}
             />
           ))}
         </div>

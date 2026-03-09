@@ -18,7 +18,7 @@ export function ContactSection({ content }: ContactSectionProps) {
       <Button
         href={storeInfoHref}
         variant="floating"
-        className={instagramHref ? "bottom-[54px] sm:bottom-[84px]" : ""}
+        className={instagramHref ? "bottom-[66px] sm:bottom-[84px]" : ""}
         target="_blank"
         rel="noopener noreferrer"
       >
