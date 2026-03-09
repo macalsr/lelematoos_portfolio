@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { ProductImageLightbox } from "@/components/ui/ProductImageLightbox";
 import { getProductBySlug } from "@/lib/products";
 import { getSiteContent } from "@/lib/siteContent";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -71,7 +72,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="grid grid-cols-[1fr_1fr] gap-6 max-lg:grid-cols-1">
               <Card variant="flash">
                 <div className="flex aspect-[4/3] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,rgba(var(--color-accent-soft),0.92),rgba(var(--color-surface),0.96)_42%,rgba(var(--color-surface-alt),0.96))] p-[22px] max-md:p-4">
-                  <img
+                  <ProductImageLightbox
                     src={product.imagemPrincipal}
                     alt={product.nome}
                     className="h-full w-full rounded-xl object-contain object-center"
