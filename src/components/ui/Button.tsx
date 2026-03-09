@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { sanitizeHref } from "@/lib/safeUrl";
 
 type Variant =
   | "navCta"
@@ -88,10 +89,11 @@ export function Button(props: AnchorProps | NativeButtonProps) {
     void variant;
     void classNameProp;
 
-    const hasWhatsAppIcon = isWhatsAppHref(anchorProps.href);
-    const hasInstagramIcon = isInstagramHref(anchorProps.href);
+    const safeHref = sanitizeHref(anchorProps.href);
+    const hasWhatsAppIcon = isWhatsAppHref(safeHref);
+    const hasInstagramIcon = isInstagramHref(safeHref);
     return (
-      <a className={className} {...anchorProps}>
+      <a className={className} {...anchorProps} href={safeHref}>
         {hasWhatsAppIcon || hasInstagramIcon ? (
           <span className="inline-flex items-center justify-center gap-2">
             {hasWhatsAppIcon ? <WhatsAppIcon /> : null}

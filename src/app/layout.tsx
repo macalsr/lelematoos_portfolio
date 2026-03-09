@@ -9,7 +9,6 @@ import {
   Oswald,
   Playfair_Display,
 } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import { getThemeCssVariables, getSafeThemeVariant } from "@/lib/themes";
 import { getFontVariantBodyClass, getSafeFontVariant } from "@/lib/fonts";
 import { getSiteContent } from "@/lib/siteContent";
@@ -103,7 +102,6 @@ export default async function RootLayout({
       >
         <div className="h-2 w-full bg-button-primary" />
         {children}
-        <Analytics />
       </body>
     </html>
   );
