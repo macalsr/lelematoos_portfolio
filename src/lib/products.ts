@@ -5,6 +5,7 @@ import {
   fetchSanityProducts,
 } from "@/lib/sanity/fetchers";
 import { shouldUseLocalFallback } from "@/lib/sanity/config";
+import { FALLBACK_PRODUCT_IMAGE } from "@/lib/constants";
 import type { ProductCategoryId, ProductItem } from "@/types/site";
 
 type SanityCategoryRef = {
@@ -47,7 +48,7 @@ function mapSanityProductToFrontend(product: SanityProduct): ProductItem | null 
   const longDescription = product.longDescription?.trim() || shortDescription;
   const material = product.material?.trim() || "Consulte";
   const size = product.size?.trim() || "Consulte";
-  const mainImageUrl = product.mainImageUrl?.trim() || "/products/print-coracao-vintage.jpg";
+  const mainImageUrl = product.mainImageUrl?.trim() || FALLBACK_PRODUCT_IMAGE;
   const priceLabel =
     typeof product.price === "number" && !Number.isNaN(product.price)
       ? formatPrice(product.price)
@@ -78,6 +79,7 @@ export async function getProducts() {
 
   try {
     const sanityProducts = await fetchSanityProducts();
+    if (!Array.isArray(sanityProducts)) return [];
     const mapped = (sanityProducts as SanityProduct[])
       .map(mapSanityProductToFrontend)
       .filter((item): item is ProductItem => item !== null);
@@ -101,8 +103,9 @@ export async function getProductBySlug(slug: string) {
   }
 
   try {
-    const sanityProduct = (await fetchSanityProductBySlug(slug)) as SanityProduct | null;
-    const mapped = sanityProduct ? mapSanityProductToFrontend(sanityProduct) : null;
+    const sanityProduct = await fetchSanityProductBySlug(slug);
+    if (!sanityProduct || typeof sanityProduct !== "object") return undefined;
+    const mapped = mapSanityProductToFrontend(sanityProduct as SanityProduct);
     if (mapped) return mapped;
   } catch (error) {
     console.error(`[Sanity] Failed to fetch product by slug "${slug}":`, error);
@@ -118,8 +121,9 @@ export async function getProductSlugs() {
   }
 
   try {
-    const sanitySlugs = (await fetchSanityProductSlugs()) as Array<{ slug?: string }>;
-    const slugs = sanitySlugs.map((item) => item.slug).filter((item): item is string => Boolean(item));
+    const sanitySlugs = await fetchSanityProductSlugs();
+    if (!Array.isArray(sanitySlugs)) return [];
+    const slugs = (sanitySlugs as Array<{ slug?: string }>).map((item) => item.slug).filter((item): item is string => Boolean(item));
     if (slugs.length > 0) return slugs;
     return [];
   } catch (error) {

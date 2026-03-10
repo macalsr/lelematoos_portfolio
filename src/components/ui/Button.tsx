@@ -6,8 +6,7 @@ type Variant =
   | "miniPrimary"
   | "miniSecondary"
   | "contactAction"
-  | "contactMain"
-  | "floating";
+  | "contactMain";
 
 type BaseProps = {
   children: ReactNode;
@@ -70,8 +69,6 @@ const variantStyles: Record<Variant, string> = {
     "rounded-[20px] bg-surface px-[18px] py-[18px] text-[13px] tracking-[0.12em] max-md:text-xs max-md:leading-[1.5]",
   contactMain:
     "rounded-[22px] bg-button-primary px-[18px] py-[18px] text-center text-[13px] tracking-[0.15em] text-white max-md:text-xs",
-  floating:
-    "fixed bottom-3 left-3 right-3 z-[60] rounded-full bg-button-secondary px-[18px] py-[14px] text-center text-[13px] sm:bottom-[18px] sm:left-auto sm:right-[18px]",
 };
 
 const baseStyle =

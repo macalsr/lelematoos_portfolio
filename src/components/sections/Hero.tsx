@@ -1,5 +1,9 @@
+import Image from "next/image";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { siteContent as mockSiteContent } from "@/data/site";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { messageStoreInfo } from "@/lib/whatsappMessages";
 import { sectionStyles } from "@/lib/sectionStyles";
 import type { SiteContent } from "@/types/site";
 
@@ -29,12 +33,17 @@ export function Hero({ content }: HeroProps) {
           <div className="absolute top-[20%] h-20 w-20 rounded-full bg-white/35 blur-2xl max-md:hidden" />
 
           <div className={`relative z-10 ${heroImageWrapClass}`}>
-            <img
-              src={heroImageUrl}
-              alt={heroImageAlt}
-              className="w-full object-cover drop-shadow-[0_42px_56px_rgba(108,58,76,0.2)]"
-              loading="eager"
-            />
+            {heroImageUrl ? (
+              <Image
+                src={heroImageUrl}
+                alt={heroImageAlt}
+                width={800}
+                height={900}
+                className="w-full h-auto object-cover drop-shadow-[0_42px_56px_rgba(108,58,76,0.2)]"
+                priority
+                sizes="(max-width: 768px) 90vw, 70vw"
+              />
+            ) : null}
           </div>
 
           <div className="relative z-20 mt-2 flex max-w-[620px] flex-col items-center max-md:mt-1">
@@ -49,6 +58,30 @@ export function Hero({ content }: HeroProps) {
             <p className="mt-4 max-w-[42ch] text-[15px] leading-[1.85] text-header-bg/82 max-md:mt-3 max-md:max-w-[32ch] max-md:text-[14px] max-md:leading-[1.72]">
               {heroNote}
             </p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-3 max-md:mt-5">
+              <Button href="#produtos" variant="miniPrimary">
+                Ver produtos
+              </Button>
+              <Button
+                href={buildWhatsAppUrl(content.contact.whatsappPhone, messageStoreInfo())}
+                variant="miniSecondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Falar no WhatsApp
+              </Button>
+              {content.contact.instagramUrl ? (
+                <Button
+                  href={content.contact.instagramUrl}
+                  variant="miniSecondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </Button>
+              ) : null}
+            </div>
           </div>
         </div>
       </Container>

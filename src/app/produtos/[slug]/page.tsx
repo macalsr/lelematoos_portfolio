@@ -17,7 +17,13 @@ type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const { getProductSlugs } = await import("@/lib/products");
+  const slugs = await getProductSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const content = await getSiteContent();

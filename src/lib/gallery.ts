@@ -33,14 +33,16 @@ export async function getGalleryItems() {
   }
 
   try {
-    const sanityGalleryItems = (await fetchSanityGalleryItems()) as SanityGalleryItem[];
-    const mapped = sanityGalleryItems
+    const sanityGalleryItems = await fetchSanityGalleryItems();
+    if (!Array.isArray(sanityGalleryItems)) return [];
+    const mapped = (sanityGalleryItems as SanityGalleryItem[])
       .map(mapSanityGalleryItemToFrontend)
       .filter((item): item is GalleryItem => item !== null);
 
     if (mapped.length > 0) return mapped;
     return [];
-  } catch {
+  } catch (error) {
+    console.error("[Sanity] Failed to fetch gallery items:", error);
     return [];
   }
 }

@@ -89,5 +89,5 @@ studio-lele-matos-site/.sanity/
 # optional local assets generated during work
 /public/uploads
 /public/tmp
-AGENTS.md
+CLAUDE.md
 .env

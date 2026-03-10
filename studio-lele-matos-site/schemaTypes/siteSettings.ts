@@ -275,20 +275,6 @@ export const siteSettingsType = defineType({
       description: "Link completo do Instagram usado nos botões do site.",
       validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
     }),
-    defineField({
-      name: "contactFloatingText",
-      title: "Texto do botão flutuante",
-      type: "string",
-      fieldset: "contact",
-      description: "Texto do botão flutuante de WhatsApp.",
-    }),
-    defineField({
-      name: "contactFloatingInstagramText",
-      title: "Texto do botão flutuante do Instagram",
-      type: "string",
-      fieldset: "contact",
-      description: "Texto do botão flutuante que leva para o Instagram.",
-    }),
   ],
   preview: {
     prepare: () => ({

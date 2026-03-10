@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import type { ProductItem } from "@/types/site";
@@ -24,14 +25,15 @@ export function ProductCard({
 
         <Link
           href={`/produtos/${product.slug}`}
-          className="block h-full w-full cursor-pointer"
+          className="relative block h-full w-full cursor-pointer"
           aria-label={`Ver produto ${product.nome}`}
         >
-          <img
+          <Image
             src={product.imagemPrincipal}
             alt={product.nome}
-            className="h-full w-full object-contain object-center transition-transform duration-500 group-hover/image:scale-[1.045]"
-            loading="lazy"
+            fill
+            className="object-contain object-center mix-blend-multiply transition-transform duration-500 group-hover/image:scale-[1.045]"
+            sizes="(max-width: 768px) 50vw, 33vw"
           />
         </Link>
       </div>
