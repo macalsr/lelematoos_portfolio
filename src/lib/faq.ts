@@ -1,5 +1,40 @@
 import { shopInfoItems as mockFaqItems } from "@/data/shopInfo";
+import { shouldUseLocalFallback } from "@/lib/sanity/config";
+import { fetchSanityFaqItems } from "@/lib/sanity/fetchers";
+import type { ShopInfoItem } from "@/types/site";
+
+type SanityFaqItem = {
+  _id: string;
+  question?: string;
+  answer?: string;
+};
+
+function mapSanityFaqItemToFrontend(item: SanityFaqItem, index: number): ShopInfoItem | null {
+  if (!item._id || !item.question || !item.answer) return null;
+
+  return {
+    id: index + 1,
+    title: item.question.trim(),
+    description: item.answer.trim(),
+  };
+}
 
 export async function getFaqItems() {
-  return mockFaqItems;
+  if (shouldUseLocalFallback()) {
+    return mockFaqItems;
+  }
+
+  try {
+    const sanityFaqItems = await fetchSanityFaqItems();
+    if (!Array.isArray(sanityFaqItems)) return [];
+    const mapped = (sanityFaqItems as SanityFaqItem[])
+      .map((item, index) => mapSanityFaqItemToFrontend(item, index))
+      .filter((item): item is ShopInfoItem => item !== null);
+
+    if (mapped.length > 0) return mapped;
+    return mockFaqItems;
+  } catch (error) {
+    console.error("[Sanity] Failed to fetch FAQ items:", error);
+    return mockFaqItems;
+  }
 }

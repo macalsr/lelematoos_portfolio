@@ -23,7 +23,7 @@ export async function fetchSanity<T>(query: string, params: SanityQueryParams = 
 
   const response = await fetch(`${getSanityBaseUrl()}?${searchParams.toString()}`, {
     method: "GET",
-    cache: "no-store",
+    next: { revalidate: 3600 },
     headers: {
       Authorization: `Bearer ${token}`,
     },

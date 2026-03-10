@@ -26,8 +26,6 @@ export const siteContent: SiteContent = {
   contact: {
     whatsappPhone: WHATSAPP_PHONE,
     instagramUrl: INSTAGRAM_URL,
-    floatingText: "Comprar no WhatsApp",
-    floatingInstagramText: "Ver no Instagram",
   },
   sections: {
     produtos: {

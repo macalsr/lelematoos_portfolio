@@ -1,145 +1,100 @@
-# Lele Matoos Website
+# Lele Matos — Site
 
-Landing page for Lele Matoos (tattoo artist) built with Next.js + TypeScript + Tailwind.
+Site institucional + loja da tatuadora Lele Matos. Portfolio, catálogo de produtos e contato via WhatsApp.
 
-## Stack
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
+**Stack:** Next.js (App Router) · Sanity CMS · Cloudflare Pages (OpenNext) · Tailwind CSS · TypeScript
 
-## Scripts
-- `npm run dev` - start local dev server
-- `npm run build` - build for Cloudflare Workers (OpenNext)
-- `npm run build:next` - regular Next.js build (Node runtime, optional)
-- `npm run preview` - preview Cloudflare worker locally
-- `npm run cf:dev` - run Wrangler dev server for built worker
-- `npm run deploy` - deploy to Cloudflare Workers (requires previous OpenNext build)
-- `npm run deploy:full` - build + deploy to Cloudflare Workers
-- `npm run start` - run Next.js production server (Node, optional)
-- `npm run lint` - lint project
-- `npm run sanity:dev` - run Sanity Studio
-- `npm run sanity:build` - build Sanity Studio
-- `npm run sanity:deploy` - deploy Sanity Studio
+---
 
-## Run locally
-1. Install dependencies:
+## Setup
+
 ```bash
 npm install
 ```
-2. Start development:
-```bash
-npm run dev
-```
-3. Open `http://localhost:3000`
 
-## Cloudflare Workers (OpenNext)
-This project is configured to deploy on Cloudflare Workers using OpenNext.
-It is **not** configured for Cloudflare Pages + `next-on-pages`.
+Crie `.env` na raiz:
 
-1. Build worker assets:
 ```bash
-npm run build
-```
-2. Preview locally with worker runtime:
-```bash
-npm run preview
-```
-3. Deploy:
-```bash
-npm run deploy
+NEXT_PUBLIC_SANITY_PROJECT_ID=qtnabn6i
+NEXT_PUBLIC_SANITY_DATASET=production        # ou "homolog"
+SANITY_API_READ_TOKEN=
+SANITY_REVALIDATE_SECRET=
+SANITY_FALLBACK_MODE=off                     # "on" = usa dados mock locais
 ```
 
-Important:
-- In Cloudflare, create/use a **Workers** project (not Pages).
-- If a CI pipeline is still calling `npx @cloudflare/next-on-pages@1`, remove that step and use `npm run build` + `npm run deploy`.
-- Do not use only `npx wrangler versions upload` without running the OpenNext build first, because `.open-next/worker.js` will not exist.
+---
 
-### Cloudflare Workers dashboard commands
-- Build command: `npm run build`
-- Deploy command: `npm run deploy`
+## Comandos
 
-Main config files:
-- `open-next.config.ts`
-- `wrangler.jsonc`
+| Comando | O que faz |
+|---|---|
+| `npm run dev` | Front-end local → http://localhost:3000 |
+| `npm run lint` | ESLint — **rodar antes de commitar** |
+| `npm run build` | Build de produção (OpenNext/Cloudflare) |
+| `npm run preview` | Preview local com runtime do Cloudflare |
+| `npm run deploy:full` | Build + deploy para Cloudflare Pages |
+| `npm run sanity:dev` | Sanity Studio local → http://localhost:3333 |
+| `npm run sanity:deploy` | Deploy do Studio para sanity.io |
 
-## Project structure
-```text
+---
+
+## Estrutura
+
+```
 src/
-  app/
-    layout.tsx
-    page.tsx
-    globals.css
+  app/              # Rotas (App Router) — pages e API routes
   components/
-    layout/
-    sections/
-    ui/
-  data/
-    site.ts
-    flashes.ts
-    portfolio.ts
-    process.ts
-  lib/
-    sectionStyles.ts
-    whatsapp.ts
-  types/
-    site.ts
+    layout/         # Header, Footer, SectionHeading
+    sections/       # Seções de página (Hero, Products, FAQ…)
+    ui/             # Componentes base reutilizáveis
+  data/             # Mocks e fallbacks estáticos
+  lib/              # Helpers e integrações (Sanity, WhatsApp…)
+    sanity/         # client.ts, fetchers.ts, queries.ts, config.ts
+  types/            # Tipos TypeScript globais
+
+studio-lele-matos-site/   # Projeto Sanity (CMS separado)
+  schemaTypes/      # Schemas: product, category, siteSettings, faqItem
 ```
 
-## Content updates (no layout changes)
-Edit only:
-- `src/data/site.ts`
-- `src/data/flashes.ts`
-- `src/data/portfolio.ts`
-- `src/data/process.ts`
+**Onde mexer:**
+- Conteúdo/copy → Sanity Studio ou `src/data/` (fallbacks)
+- Nova seção de página → `src/components/sections/`
+- Componente reutilizável → `src/components/ui/`
+- Queries GROQ → `src/lib/sanity/fetchers.ts` — **nunca inline nos componentes**
+- Estilos → Tailwind no componente; globais em `src/app/globals.css`
 
-## Visual/style updates
-- Global spacing rhythm: `src/lib/sectionStyles.ts`
-- Reusable UI style: `src/components/ui/*`
-- Tattoo SVGs/icons: `src/components/ui/TattooIcons.tsx`
-
-## Header behavior
-- Desktop: full visible navigation
-- Mobile: compact fixed header with menu button and expandable menu
+---
 
 ## Sanity CMS
-Studio route in this app:
-- `/admin` (light redirect only)
 
-Studio source/config folder:
-- `studio-lele-matos-site/`
+- **Studio (produção):** https://lelematoos.sanity.studio/production
+- **Studio (homolog):** https://lelematoos.sanity.studio/homolog
+- Revalidação automática: webhook do Sanity para `/api/revalidate` após publicações
+- Fallback: quando Sanity não retorna dados, o site usa os mocks de `src/data/`
 
-Configured Sanity project:
-- `projectId: qtnabn6i`
-- `datasets (Studio workspaces): production, homolog`
+Schemas disponíveis: `product`, `category`, `siteSettings`, `faqItem`
 
-Current schemas:
-- `product`
-- `category`
-- `siteSettings`
-- `faqItem`
+---
 
-Useful files:
-- `studio-lele-matos-site/sanity.config.ts`
-- `studio-lele-matos-site/sanity.cli.ts`
-- `studio-lele-matos-site/schemaTypes/*`
-- `src/app/admin/[[...tool]]/page.tsx`
-- `src/lib/sanity/client.ts`
-- `src/lib/sanity/queries.ts`
-- `src/lib/sanity/fetchers.ts`
+## Deploy
 
-Environment:
-1. Configure `SANITY_STUDIO_URL` with your external Studio URL.
-2. Keep the public project settings (`NEXT_PUBLIC_SANITY_*`) aligned with your Sanity project.
-3. `SANITY_FALLBACK_MODE=off` uses Sanity as source of truth; set `on` to enable local mock fallback.
+Hospedado no **Cloudflare Pages** via OpenNext. Variáveis de produção ficam no painel do Cloudflare.
 
-Studio workspaces URLs:
-- Production workspace: `https://lelematoos.sanity.studio/production`
-- Homolog workspace: `https://lelematoos.sanity.studio/homolog`
+```bash
+npm run deploy:full   # build + deploy
+```
 
-Cloudflare environment setup (recommended):
-- Production environment:
-  - `SANITY_STUDIO_URL=https://lelematoos.sanity.studio/production`
-  - `NEXT_PUBLIC_SANITY_DATASET=production`
-- Homolog/Preview environment:
-  - `SANITY_STUDIO_URL=https://lelematoos.sanity.studio/homolog`
-  - `NEXT_PUBLIC_SANITY_DATASET=homolog`
+Configs principais: `open-next.config.ts` · `wrangler.jsonc`
+
+---
+
+## Git
+
+```
+main        → produção (deploy automático)
+feat/nome   → novas funcionalidades
+fix/nome    → correções
+content/    → ajustes de conteúdo
+```
+
+Prefixos de commit: `feat:` `fix:` `style:` `content:` `refactor:` `chore:`

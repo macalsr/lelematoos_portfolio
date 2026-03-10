@@ -27,14 +27,16 @@ export async function getCategories() {
   }
 
   try {
-    const sanityCategories = (await fetchSanityCategories()) as SanityCategory[];
-    const mapped = sanityCategories
+    const sanityCategories = await fetchSanityCategories();
+    if (!Array.isArray(sanityCategories)) return [];
+    const mapped = (sanityCategories as SanityCategory[])
       .map(mapSanityCategoryToFrontend)
       .filter((item): item is CategoryItem => item !== null);
 
     if (mapped.length > 0) return mapped;
     return [];
-  } catch {
+  } catch (error) {
+    console.error("[Sanity] Failed to fetch categories:", error);
     return [];
   }
 }

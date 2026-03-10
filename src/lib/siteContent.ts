@@ -20,8 +20,6 @@ type SanitySiteSettings = {
   heroImageUrl?: string;
   heroImageAlt?: string;
   brandTagline?: string;
-  contactFloatingText?: string;
-  contactFloatingInstagramText?: string;
   sectionProductsKicker?: string;
   sectionProductsTitle?: string;
   sectionProductsText?: string;
@@ -57,8 +55,6 @@ function createEmptySiteContent(): SiteContent {
     contact: {
       whatsappPhone: "",
       instagramUrl: "",
-      floatingText: "",
-      floatingInstagramText: "",
     },
     sections: {
       produtos: { ...mockSiteContent.sections.produtos },
@@ -116,10 +112,6 @@ export async function getSiteContent() {
     if (settings.heroImageUrl?.trim()) content.hero.imageUrl = settings.heroImageUrl.trim();
     if (settings.heroImageAlt?.trim()) content.hero.imageAlt = settings.heroImageAlt.trim();
     if (settings.brandTagline?.trim()) content.brand.tagline = settings.brandTagline.trim();
-    if (settings.contactFloatingText?.trim()) content.contact.floatingText = settings.contactFloatingText.trim();
-    if (settings.contactFloatingInstagramText?.trim()) {
-      content.contact.floatingInstagramText = settings.contactFloatingInstagramText.trim();
-    }
     if (settings.sectionProductsKicker?.trim()) content.sections.produtos.kicker = settings.sectionProductsKicker.trim();
     if (settings.sectionProductsTitle?.trim()) content.sections.produtos.title = settings.sectionProductsTitle.trim();
     if (typeof settings.sectionProductsText === "string") content.sections.produtos.text = settings.sectionProductsText.trim();
@@ -131,7 +123,8 @@ export async function getSiteContent() {
     if (typeof settings.sectionFaqText === "string") content.sections.faq.text = settings.sectionFaqText.trim();
 
     return content;
-  } catch {
+  } catch (error) {
+    console.error("[Sanity] Failed to fetch site settings:", error);
     return content;
   }
 }

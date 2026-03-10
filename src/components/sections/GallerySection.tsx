@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -21,13 +22,16 @@ export function GallerySection({ items }: GallerySectionProps) {
         <div className={`${sectionStyles.contentGridTop} grid grid-cols-4 gap-[18px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4`}>
           {items.map((item) => (
             <Card key={item.id} variant="portfolio">
-              <div className="flex aspect-[1/1.1] items-center justify-center border-b border-b-green-dark/10 bg-[linear-gradient(135deg,#f3d4df,#dcebcf)] p-[18px]">
-                <img
-                  src={item.imageUrl}
-                  alt={item.alt}
-                  className="h-full w-full rounded-xl object-cover"
-                  loading="lazy"
-                />
+              <div className="aspect-[1/1.1] overflow-hidden border-b border-b-green-dark/10 bg-[linear-gradient(135deg,#f3d4df,#dcebcf)] p-[18px]">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.alt}
+                    fill
+                    className="rounded-xl object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
               </div>
 
               <div className="p-[18px] max-md:p-5">

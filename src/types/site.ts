@@ -78,8 +78,6 @@ export type SiteContent = {
   contact: {
     whatsappPhone: string;
     instagramUrl: string;
-    floatingText: string;
-    floatingInstagramText: string;
   };
   sections: {
     produtos: {
